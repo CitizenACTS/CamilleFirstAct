@@ -6,10 +6,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--CategorieVC-->
         <scene sceneID="lqX-xL-U7W">
             <objects>
-                <viewController id="UKb-y8-nN1" sceneMemberID="viewController">
+                <viewController id="UKb-y8-nN1" customClass="CategorieVC" customModule="Camille" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="d2R-z2-Jqf"/>
                         <viewControllerLayoutGuide type="bottom" id="Cq9-Rg-j9I"/>
@@ -46,7 +46,10 @@
                                                     <constraint firstAttribute="width" constant="50" id="7x7-Hk-WUw"/>
                                                     <constraint firstAttribute="height" constant="50" id="BPI-at-b2p"/>
                                                 </constraints>
-                                                <state key="normal" title="Button"/>
+                                                <state key="normal" title="créer"/>
+                                                <connections>
+                                                    <action selector="creerBtn:" destination="UKb-y8-nN1" eventType="touchUpInside" id="CfA-zx-9fy"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IHm-Tk-xVa">
                                                 <rect key="frame" x="435" y="0.0" width="85" height="195"/>
@@ -54,7 +57,10 @@
                                                     <constraint firstAttribute="height" constant="50" id="Hla-fT-txT"/>
                                                     <constraint firstAttribute="width" constant="50" id="Kpn-45-h5F"/>
                                                 </constraints>
-                                                <state key="normal" title="Button"/>
+                                                <state key="normal" title="produire"/>
+                                                <connections>
+                                                    <action selector="produireBtn:" destination="UKb-y8-nN1" eventType="touchUpInside" id="53b-s4-WwR"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -100,19 +106,30 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JVq-HE-7HB">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="teO-fp-BOn">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="teO-fp-BOn">
                                         <rect key="frame" x="77" y="24" width="444" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hU9-gO-jdz">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hU9-gO-jdz">
                                         <rect key="frame" x="554" y="20" width="30" height="30"/>
-                                        <state key="normal" title="?"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="ZKA-9h-jol"/>
+                                            <constraint firstAttribute="width" constant="30" id="dcf-3e-MRV"/>
+                                        </constraints>
+                                        <state key="normal" title="?">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="AskQuestion:" destination="UKb-y8-nN1" eventType="touchUpInside" id="uxf-RW-hbV"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="hU9-gO-jdz" secondAttribute="trailing" constant="16" id="817-H8-UKi"/>
+                                    <constraint firstItem="hU9-gO-jdz" firstAttribute="top" secondItem="JVq-HE-7HB" secondAttribute="top" constant="20" id="RZd-xw-ePt"/>
                                     <constraint firstAttribute="height" constant="70" id="iaH-aX-onZ"/>
                                 </constraints>
                             </view>
@@ -128,6 +145,9 @@
                             <constraint firstItem="Cq9-Rg-j9I" firstAttribute="top" secondItem="cTO-kW-EZ4" secondAttribute="bottom" constant="40" id="n9w-bx-V0w"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="questionLbl" destination="teO-fp-BOn" id="csg-j9-yEl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lLR-oA-fzn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -408,12 +428,12 @@
                     <connections>
                         <outlet property="emailTextField" destination="Rav-oT-ib6" id="JuD-oY-S7I"/>
                         <outlet property="passwordTextField" destination="Qu1-gW-ROR" id="mF5-rB-b06"/>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="logged In" action="showDetailViewController:sender:" id="g5g-tx-IIk"/>
+                        <segue destination="UKb-y8-nN1" kind="show" identifier="logged In" id="seh-2a-hDa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZgV-UZ-KmX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1073" y="359"/>
+            <point key="canvasLocation" x="-1125" y="750"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="qQc-Kv-aSI">

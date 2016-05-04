@@ -11,20 +11,16 @@ import Foundation
 
 class Category {
     
-    enum Category1: String {
-        case Creer = "Comment créer"
-        case Produire = "Comment Profuire"
-    }
+    var Category1 = ["créer ","Produir ","Developper "]
     
-    enum Category2: String {
-        case Creer = "de la créativité"
-        case Produire = "de la productivité"
-    }
     
-    enum Category3: String {
-        case Creer = "en création"
-        case Produire = "en production"
-    }
+    var Category2 = ["la créativité ", "la productivité ", "le developpement "]
+ 
+    
+    var Category3 = ["en création ","en production ","en devellopement "]
+    
+    var DictCategory: [Int: [String]] = [1:["créer ","Produire ","Developper "],2:["la créativité ", "la productivité ", "le developpement "],3:["en création ","en production ","en devellopement "]]
+    var Category = ["creer","produire","develloper"]
     
     
 }

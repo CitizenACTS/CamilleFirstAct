@@ -10,7 +10,7 @@ import Foundation
 
 
 // URL
-let URL_BASE = "https://camille.firebaseio.com"
+let URL_BASE = "https://camille.firebaseio.com/"
 
 // KEY
 let KEY_UID = "uid"
