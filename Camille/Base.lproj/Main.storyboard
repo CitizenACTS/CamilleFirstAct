@@ -296,6 +296,7 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="Qrn-SB-x1h" id="CFy-G9-94j"/>
+                        <segue destination="iEP-gf-ygi" kind="show" identifier="SeePost" id="ngq-em-ycj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -445,10 +446,10 @@
             </objects>
             <point key="canvasLocation" x="-1667" y="824"/>
         </scene>
-        <!--View Controller-->
+        <!--See Post-->
         <scene sceneID="qQc-Kv-aSI">
             <objects>
-                <viewController id="iEP-gf-ygi" sceneMemberID="viewController">
+                <viewController id="iEP-gf-ygi" customClass="SeePost" customModule="Camille" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1kb-j9-o3j"/>
                         <viewControllerLayoutGuide type="bottom" id="LOn-2K-i1r"/>
@@ -495,15 +496,21 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="LLc-SJ-wpB">
-                                        <rect key="frame" x="0.0" y="160" width="520" height="290"/>
+                                        <rect key="frame" x="0.0" y="160" width="520" height="269"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="E5z-dC-8PC"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="175" id="E5z-dC-8PC"/>
                                         </constraints>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5uf-Ws-VwU">
+                                        <rect key="frame" x="0.0" y="429" width="520" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Tyy-Yn-58j">
                                         <rect key="frame" x="0.0" y="450" width="520" height="40"/>
                                         <subviews>
@@ -544,6 +551,12 @@
                             <constraint firstAttribute="trailingMargin" secondItem="cXl-gr-aJE" secondAttribute="trailing" constant="20" id="n6N-5y-nfm"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="descriptionLbl" destination="ffH-Mz-Dwd" id="dS2-29-bhC"/>
+                        <outlet property="textLbl" destination="LLc-SJ-wpB" id="dun-PS-m1b"/>
+                        <outlet property="titreLbl" destination="i55-0Z-jCB" id="Xtf-Ld-5fn"/>
+                        <outlet property="votesLbl" destination="5uf-Ws-VwU" id="U3p-tm-3Uc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DYi-Rv-4lL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

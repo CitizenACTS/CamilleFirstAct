@@ -10,11 +10,13 @@ import UIKit
 import Firebase
 
 class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
+    
     var CatRef: Firebase!
     @IBOutlet weak var tableView: UITableView!
     
     var posts = [Post]()
+    var SelectedPost: Post!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +25,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.delegate = self
         tableView.dataSource = self
         DataService.dataservice.REF_POSTS.childByAppendingPath("creer").childByAppendingPath("creer").childByAppendingPath("creer").observeEventType(.Value, withBlock: { snapshot in
-            print(snapshot.value)
+//            print(snapshot.value)
             
             self.posts = []
             if let snapshot = snapshot.children.allObjects as? [FDataSnapshot] {
@@ -44,9 +46,22 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
 
 
+
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
+    }
+    
+   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let dest = segue.destinationViewController as! SeePost
+        dest.selectedPost = SelectedPost
+//        print(SelectedPost)
+        }
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        SelectedPost = posts[indexPath.row]
+        performSegueWithIdentifier("SeePost", sender: nil)
+        
+        
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

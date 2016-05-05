@@ -9,13 +9,32 @@
 import UIKit
 
 class SeePost: UIViewController {
+    
+    @IBOutlet weak var titreLbl: UILabel!
+    @IBOutlet weak var descriptionLbl: UITextView!
+    @IBOutlet weak var textLbl: UITextView!
+    @IBOutlet weak var votesLbl: UILabel!
+    
+    
 
+    var selectedPost: Post!
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+    
+        ConfigurePost(selectedPost)
+
     }
 
+    func ConfigurePost(post: Post) {
+        
+        titreLbl.text = post.postTitle
+        descriptionLbl.text = post.postDesc
+        textLbl.text = post.postText
+        votesLbl.text = "\(post.postVote)"
+        
+        
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
