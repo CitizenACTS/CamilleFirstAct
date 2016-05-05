@@ -13,7 +13,7 @@ class CategorieVC: UIViewController {
     
     
     @IBOutlet weak var questionLbl: UILabel!
-    let category = Category()
+    
     var ArrayCatQuestion = ["","",""]
     var ArrayCatFirebase = ["","",""]
     
@@ -23,7 +23,7 @@ class CategorieVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         questionLbl.text = "\(ArrayCatQuestion[0])\(ArrayCatQuestion[1])\(ArrayCatQuestion[2])"
-        
+   
     }
     
 
@@ -38,23 +38,22 @@ class CategorieVC: UIViewController {
             
         }
         
-        print(currentcount)
-        
+
         
     }
     func SaveCategorie(identifier: String) {
         
         var currentCategory = 0
-        var Quest = category.DictCategory
-        var cat = category.Category
+        var Quest = DictCategory
+        var cat = ArrayCategory
         
         for x in 0...cat.count-1 {
             if cat[x] == identifier {
               currentCategory += x
             }
         }
-        print("category \(currentCategory)")
-        print("count\(currentcount)")
+//        print("category \(currentCategory)")
+//        print("count\(currentcount)")
         
  
         ArrayCatFirebase[currentcount-1] = cat[currentCategory]
@@ -64,13 +63,19 @@ class CategorieVC: UIViewController {
         questionLbl.text = "\(ArrayCatQuestion[0])\(ArrayCatQuestion[1])\(ArrayCatQuestion[2])"
         
     }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let dest = segue.destinationViewController as! FeedVC
+        dest.CatRef = CatRef
+      
+    }
     
     @IBAction func AskQuestion(sender: UIButton) {
         
         if ArrayCatFirebase[0] != "" && ArrayCatFirebase[1] != "" && ArrayCatFirebase[2] != "" {
         
-        let catRef = DataService.dataservice.REF_BASE.childByAppendingPath("\(ArrayCatFirebase[0])/\(ArrayCatFirebase[1])/\(ArrayCatFirebase[2])")
-        catRef.setValue("Bonjour")
+        CatRef = DataService.dataservice.REF_BASE.childByAppendingPath("\(ArrayCatFirebase[0])/\(ArrayCatFirebase[1])/\(ArrayCatFirebase[2])")
+
+           performSegueWithIdentifier(SEGUE_QUESTION, sender: nil)
         }
         
     }

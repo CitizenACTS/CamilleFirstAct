@@ -7,20 +7,20 @@
 //
 
 import Foundation
+import Firebase
 
 
 class Category {
     
-    var Category1 = ["créer ","Produir ","Developper "]
+    private var _CAT_REF: Firebase!
     
+    var CAT_REF: Firebase {
+        return _CAT_REF
+    }
     
-    var Category2 = ["la créativité ", "la productivité ", "le developpement "]
- 
-    
-    var Category3 = ["en création ","en production ","en devellopement "]
-    
-    var DictCategory: [Int: [String]] = [1:["créer ","Produire ","Developper "],2:["la créativité ", "la productivité ", "le developpement "],3:["en création ","en production ","en devellopement "]]
-    var Category = ["creer","produire","develloper"]
-    
-    
+
+    init(catRef: Firebase){
+        
+        self._CAT_REF = catRef
+    }
 }

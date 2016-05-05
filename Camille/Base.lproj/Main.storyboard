@@ -147,16 +147,17 @@
                     </view>
                     <connections>
                         <outlet property="questionLbl" destination="teO-fp-BOn" id="csg-j9-yEl"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="AskQuestion" id="F6V-1r-caZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lLR-oA-fzn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-349" y="824"/>
         </scene>
-        <!--View Controller-->
+        <!--FeedVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Camille" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="FeedVC" customModule="Camille" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>

@@ -17,9 +17,20 @@ let KEY_UID = "uid"
 
 // SEGUE
 let SEGUE_LOG = "logged In"
+let SEGUE_QUESTION = "AskQuestion"
 
 
 // ERROR
 let STATUS_ACCOUNT_NONEXIST = -8
 let STATUS_ACCOUNT_WRONGEMAIL = -5
 let STATUS_ACCOUNT_WRONGPASSWORD = -6
+
+//Category
+
+
+
+var DictCategory: [Int: [String]] = [
+    1:["créer ","Produire ","Developper "],
+    2:["la créativité ", "la productivité ", "le developpement "],
+    3:["en création ","en production ","en devellopement "]]
+var ArrayCategory = ["creer","produire","develloper"]

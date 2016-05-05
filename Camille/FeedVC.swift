@@ -7,21 +7,25 @@
 //
 
 import UIKit
+import Firebase
 
 class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    
+    var CatRef: Firebase!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         
-        tableView.delegate = self
-        tableView.dataSource = self
+//        tableView.delegate = self
+//        tableView.dataSource = self
+        CatRef.setValue("camarche")
+       
     }
 
 
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 3
     }
