@@ -64,7 +64,7 @@ class CategorieVC: UIViewController {
         
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let dest = segue.destinationViewController as! FeedVC
+        let dest = segue.destinationViewController as! NewPostVC
         dest.CatRef = CatRef
       
     }
@@ -73,7 +73,7 @@ class CategorieVC: UIViewController {
         
         if ArrayCatFirebase[0] != "" && ArrayCatFirebase[1] != "" && ArrayCatFirebase[2] != "" {
         
-        CatRef = DataService.dataservice.REF_BASE.childByAppendingPath("\(ArrayCatFirebase[0])/\(ArrayCatFirebase[1])/\(ArrayCatFirebase[2])")
+        CatRef = DataService.dataservice.REF_POSTS.childByAppendingPath("\(ArrayCatFirebase[0])/\(ArrayCatFirebase[1])/\(ArrayCatFirebase[2])/")
 
            performSegueWithIdentifier(SEGUE_QUESTION, sender: nil)
         }

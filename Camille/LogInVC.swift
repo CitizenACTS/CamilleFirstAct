@@ -53,6 +53,8 @@ class LogInVC: UIViewController {
                     } else {
                         print("login")
                         NSUserDefaults.standardUserDefaults().setValue(authData.uid, forKey: KEY_UID)
+                        let user = ["provider": authData.provider!]
+                        DataService.dataservice.createFirebaseUser(authData.uid, user: user)
                         self.performSegueWithIdentifier(SEGUE_LOG, sender: nil)
                     }
                 })
@@ -77,15 +79,26 @@ class LogInVC: UIViewController {
                                 
                             } else {
                                 NSUserDefaults.standardUserDefaults().setValue(result[KEY_UID], forKey: KEY_UID)
-                                DataService.dataservice.REF_BASE.authUser(email, password: pwd, withCompletionBlock: nil)
-                                self.performSegueWithIdentifier(SEGUE_LOG, sender: nil)
-                            }
+                                DataService.dataservice.REF_BASE.authUser(email, password: pwd, withCompletionBlock: { err, authData in
+                                    
+                                    let user = ["provider": authData.provider!, "email": email]
+                                    DataService.dataservice.createFirebaseUser(authData.uid, user: user)
+                            })
+                
+                    
+                            self.performSegueWithIdentifier(SEGUE_LOG, sender: nil)
+                                
+                        }
                         })
                         
-                    }
+                    
                     if error.code == STATUS_ACCOUNT_WRONGEMAIL {
                         self.showErrorAlert("Invalid Email", msg: "Please enter a valid mail")
+                        }
+                    } else {
+                        self.showErrorAlert("Could not log", msg: "Pls check password")
                     }
+                    
                 } else {
                     self.performSegueWithIdentifier(SEGUE_LOG, sender: nil)
                 }

@@ -147,7 +147,7 @@
                     </view>
                     <connections>
                         <outlet property="questionLbl" destination="teO-fp-BOn" id="csg-j9-yEl"/>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="AskQuestion" id="F6V-1r-caZ"/>
+                        <segue destination="CbH-oK-4sT" kind="show" identifier="AskQuestion" id="Pll-gf-R6r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lLR-oA-fzn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -197,7 +197,7 @@
                                 <rect key="frame" x="0.0" y="114" width="600" height="486"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="169" id="N0p-0h-1ue">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="169" id="N0p-0h-1ue" customClass="PostCell" customModule="Camille" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="600" height="169"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="N0p-0h-1ue" id="UAA-HW-9zr">
@@ -210,17 +210,17 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2mr-9g-837">
                                                             <rect key="frame" x="0.0" y="0.0" width="584" height="152"/>
                                                             <subviews>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A4j-G4-gH3">
+                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="A4j-G4-gH3">
                                                                     <rect key="frame" x="0.0" y="0.0" width="584" height="42"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Titre" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="txQ-at-vIJ">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="462" height="42"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="422" height="42"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Utilisateur" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="178-kd-7Gb">
-                                                                            <rect key="frame" x="462" y="0.0" width="78" height="42"/>
+                                                                            <rect key="frame" x="442" y="0.0" width="78" height="42"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -244,7 +244,7 @@
                                                                         </stackView>
                                                                     </subviews>
                                                                 </stackView>
-                                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hAN-lO-laO">
+                                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hAN-lO-laO">
                                                                     <rect key="frame" x="0.0" y="42" width="584" height="110"/>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -270,6 +270,12 @@
                                                 <constraint firstItem="Spk-L7-Tsm" firstAttribute="top" secondItem="UAA-HW-9zr" secondAttribute="topMargin" id="q7D-H3-t6f"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="descText" destination="hAN-lO-laO" id="HHv-9H-dai"/>
+                                            <outlet property="titleLbl" destination="txQ-at-vIJ" id="Jo8-5Z-jAk"/>
+                                            <outlet property="usernamLabel" destination="178-kd-7Gb" id="yp3-Hj-xSu"/>
+                                            <outlet property="voteLbl" destination="uMV-Bw-sqE" id="2qD-Mf-ZAK"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -288,10 +294,13 @@
                             <constraint firstItem="Qrn-SB-x1h" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="yqA-0H-8Pc"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="Qrn-SB-x1h" id="CFy-G9-94j"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="326" y="348"/>
+            <point key="canvasLocation" x="-349" y="142"/>
         </scene>
         <!--Log InVC-->
         <scene sceneID="652-Pq-v5k">
@@ -434,7 +443,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZgV-UZ-KmX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1125" y="750"/>
+            <point key="canvasLocation" x="-1667" y="824"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="qQc-Kv-aSI">
@@ -538,12 +547,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DYi-Rv-4lL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1249" y="12"/>
+            <point key="canvasLocation" x="353" y="142"/>
         </scene>
-        <!--View Controller-->
+        <!--New PostVC-->
         <scene sceneID="qmR-Lv-Xvp">
             <objects>
-                <viewController id="CbH-oK-4sT" sceneMemberID="viewController">
+                <viewController id="CbH-oK-4sT" customClass="NewPostVC" customModule="Camille" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jGG-Cz-ZL7"/>
                         <viewControllerLayoutGuide type="bottom" id="J6u-2o-u0S"/>
@@ -604,6 +613,9 @@
                                             <constraint firstAttribute="height" constant="50" id="Wkn-5K-y4K"/>
                                         </constraints>
                                         <state key="normal" title="Save"/>
+                                        <connections>
+                                            <action selector="saveNewPost:" destination="CbH-oK-4sT" eventType="touchUpInside" id="X0x-JW-EqH"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -619,10 +631,16 @@
                             <constraint firstItem="J6u-2o-u0S" firstAttribute="top" secondItem="Ppr-9e-5Y1" secondAttribute="bottom" constant="20" id="xOX-mT-F1A"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="descTextView" destination="CSO-74-gdE" id="5Mi-rK-V76"/>
+                        <outlet property="textTextView" destination="mes-pd-bhg" id="cPH-Qo-SRU"/>
+                        <outlet property="titreTrextFiled" destination="FgP-qQ-cEg" id="h3f-fP-lsB"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="SaveQuestion" id="hqi-Fi-5iC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ivY-Yk-nhG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1249" y="716"/>
+            <point key="canvasLocation" x="353" y="824"/>
         </scene>
     </scenes>
 </document>

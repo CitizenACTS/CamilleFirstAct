@@ -10,15 +10,24 @@ import UIKit
 
 class PostCell: UITableViewCell {
 
+    @IBOutlet weak var titleLbl: UILabel!
+    @IBOutlet weak var descText: UITextView!
+    @IBOutlet weak var usernamLabel: UILabel!
+    @IBOutlet weak var voteLbl: UILabel!
+    
+    var post: Post!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
+    func configureCell(post: Post) {
+        self.post = post
+        
+        self.titleLbl.text = post.postTitle
+        self.descText.text = post.postDesc
+        self.voteLbl.text = "\(post.postVote)"
     }
-
 }

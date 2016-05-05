@@ -50,13 +50,30 @@ class Post {
     
     init(username: String, title: String, desc: String, text: String) {
         
-        
-        
-        
-        
+        self._postTitle = title
+        self._username = username
+        self._postText = text
+
         
     }
     
+    init(postKey: String, dictionary: Dictionary<String, AnyObject>) {
+        self._postKey = postKey
+        if let votes = dictionary["votes"] as? Int {
+            self._postVote = votes
+        }
+        if let title = dictionary["title"] as? String {
+            self._postTitle = title
+        }
+        if let desc = dictionary["description"] as? String {
+            self._postDesc = desc
+        }
+        if let text = dictionary["text"] as? String {
+            self._postText = text
+        }
+     
+        
+    }
     
     
     

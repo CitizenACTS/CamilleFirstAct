@@ -7,8 +7,15 @@
 //
 
 import UIKit
+import Firebase
 
 class NewPostVC: UIViewController {
+    
+    var CatRef: Firebase!
+    
+    @IBOutlet weak var titreTrextFiled: UITextField!
+    @IBOutlet weak var descTextView: UITextView!
+    @IBOutlet weak var textTextView: UITextView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,20 +23,22 @@ class NewPostVC: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func saveNewPost(sender: AnyObject) {
+        var post: Dictionary<String, AnyObject> = [
+            "title" : titreTrextFiled.text!,
+            "description" : descTextView.text!,
+            "votes": 0
+        
+        
+        
+        ]
+        
+        if textTextView.text != "" {
+            post["text"] = textTextView.text
+        }
+        CatRef.childByAutoId().setValue(post)
+        print(post)
+        performSegueWithIdentifier("SaveQuestion", sender: nil)
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
