@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SeePost: UIViewController {
     
@@ -15,8 +16,11 @@ class SeePost: UIViewController {
     @IBOutlet weak var textLbl: UITextView!
     @IBOutlet weak var votesLbl: UILabel!
     
+    @IBOutlet weak var addBtn: UIButton!
+    @IBOutlet weak var subBtn: UIButton!
     
-
+    
+    var voteRef: Firebase!
     var selectedPost: Post!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,28 +31,54 @@ class SeePost: UIViewController {
     }
 
     func ConfigurePost(post: Post) {
-        
+        voteRef = DataService.dataservice.REF_USER_CURRENT.childByAppendingPath("likes").childByAppendingPath(post.postKey)
         titreLbl.text = post.postTitle
         descriptionLbl.text = post.postDesc
         textLbl.text = post.postText
         votesLbl.text = "\(post.postVote)"
         
         
-    }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+
+        voteRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
+            
+            if let doesNotExist = snapshot.value as? NSNull {
+                
+                self.activateBtn(true)
+            } else {
+                self.activateBtn(false)
+            }
+        })
+        
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func activateBtn( enabled: Bool) {
+        
+        self.addBtn.enabled = enabled
+        self.subBtn.enabled = enabled
     }
-    */
+    
+    @IBAction func addVote(sender: UIButton) {
+        self.selectedPost!.adjustVote(true)
+        self.voteRef.setValue(true)
+        activateBtn(false)
+        
+        self.votesLbl.text = "\(selectedPost.postVote)"
+    }
+    
+    @IBAction func subVote(sender: UIButton) {
+        self.selectedPost.adjustVote(false)
+        self.voteRef.setValue(true)
+        activateBtn(false)
+
+        self.votesLbl.text = "\(selectedPost.postVote)"
+        
+    }
+    
+    @IBAction func goBack(sender: UIButton) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    
 
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class PostCell: UITableViewCell {
 
@@ -25,7 +26,6 @@ class PostCell: UITableViewCell {
 
     func configureCell(post: Post) {
         self.post = post
-        
         self.titleLbl.text = post.postTitle
         self.descText.text = post.postDesc
         self.voteLbl.text = "\(post.postVote)"

@@ -461,16 +461,27 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5xq-14-c9e">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ZU-a0-vS8">
-                                        <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ZU-a0-vS8">
+                                        <rect key="frame" x="279" y="25" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2L1-IU-f04">
+                                        <rect key="frame" x="8" y="21" width="46" height="30"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="goBack:" destination="iEP-gf-ygi" eventType="touchUpInside" id="S2B-qC-6nK"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="2L1-IU-f04" firstAttribute="top" secondItem="5xq-14-c9e" secondAttribute="top" constant="21" id="15q-Ne-IUW"/>
+                                    <constraint firstItem="2L1-IU-f04" firstAttribute="leading" secondItem="5xq-14-c9e" secondAttribute="leading" constant="8" id="7fb-4Q-j8h"/>
                                     <constraint firstAttribute="height" constant="70" id="ASw-Vc-gYU"/>
+                                    <constraint firstItem="2ZU-a0-vS8" firstAttribute="centerY" secondItem="5xq-14-c9e" secondAttribute="centerY" id="Jru-9S-1f6"/>
+                                    <constraint firstItem="2ZU-a0-vS8" firstAttribute="centerX" secondItem="5xq-14-c9e" secondAttribute="centerX" id="zLk-n6-AYM"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="cXl-gr-aJE">
@@ -520,6 +531,9 @@
                                                     <constraint firstAttribute="height" constant="40" id="892-bm-0JH"/>
                                                 </constraints>
                                                 <state key="normal" title="-"/>
+                                                <connections>
+                                                    <action selector="subVote:" destination="iEP-gf-ygi" eventType="touchUpInside" id="itM-gA-sOO"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aDo-uP-v2Y">
                                                 <rect key="frame" x="173" y="0.0" width="174" height="40"/>
@@ -534,6 +548,9 @@
                                                     <constraint firstAttribute="height" constant="40" id="LMo-j3-IKG"/>
                                                 </constraints>
                                                 <state key="normal" title="+"/>
+                                                <connections>
+                                                    <action selector="addVote:" destination="iEP-gf-ygi" eventType="touchUpInside" id="t5f-G0-A3K"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -552,7 +569,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addBtn" destination="Otb-jw-afc" id="LSv-id-ieS"/>
                         <outlet property="descriptionLbl" destination="ffH-Mz-Dwd" id="dS2-29-bhC"/>
+                        <outlet property="subBtn" destination="D4u-yz-v5l" id="0zm-vE-qWE"/>
                         <outlet property="textLbl" destination="LLc-SJ-wpB" id="dun-PS-m1b"/>
                         <outlet property="titreLbl" destination="i55-0Z-jCB" id="Xtf-Ld-5fn"/>
                         <outlet property="votesLbl" destination="5uf-Ws-VwU" id="U3p-tm-3Uc"/>
@@ -560,7 +579,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DYi-Rv-4lL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="353" y="142"/>
+            <point key="canvasLocation" x="398" y="153"/>
         </scene>
         <!--New PostVC-->
         <scene sceneID="qmR-Lv-Xvp">

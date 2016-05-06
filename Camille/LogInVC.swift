@@ -90,13 +90,13 @@ class LogInVC: UIViewController {
                                 
                         }
                         })
-                        
+                    } else {
+                        self.showErrorAlert("Could not log", msg: "Pls check password")
+                    }
                     
                     if error.code == STATUS_ACCOUNT_WRONGEMAIL {
                         self.showErrorAlert("Invalid Email", msg: "Please enter a valid mail")
-                        }
-                    } else {
-                        self.showErrorAlert("Could not log", msg: "Pls check password")
+                        
                     }
                     
                 } else {

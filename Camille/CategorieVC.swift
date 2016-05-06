@@ -19,6 +19,7 @@ class CategorieVC: UIViewController {
     
     var currentcount = 0
     var CatRef: Firebase!
+    var postQuestion: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,11 +62,12 @@ class CategorieVC: UIViewController {
         ArrayCatQuestion[currentcount-1] = Quest[currentcount]![currentCategory]
 
         questionLbl.text = "\(ArrayCatQuestion[0])\(ArrayCatQuestion[1])\(ArrayCatQuestion[2])"
-        
+        postQuestion = "\(ArrayCatFirebase[0])\(ArrayCatFirebase[1])\(ArrayCatFirebase[2])"
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let dest = segue.destinationViewController as! NewPostVC
         dest.CatRef = CatRef
+        dest.postQuestion = postQuestion
       
     }
     

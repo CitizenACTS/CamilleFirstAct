@@ -20,7 +20,7 @@ class Post {
     private var _postKey: String!
     private var _username: String!
     private var _postRef: Firebase!
-    private var _postQuestion: Firebase!
+    private var _postQuestion: String!
     
     
     
@@ -47,6 +47,9 @@ class Post {
         return _postKey
     }
     
+    var postQuestion: String {
+        return _postQuestion
+    }
     
     init(username: String, title: String, desc: String, text: String) {
         
@@ -71,7 +74,22 @@ class Post {
         if let text = dictionary["text"] as? String {
             self._postText = text
         }
+        if let question = dictionary["question"] as? String {
+            self._postQuestion = question
+        }
+        
+        self._postRef = DataService.dataservice.REF_POSTS.childByAppendingPath(self._postKey)
      
+        
+    }
+    func adjustVote(addVote: Bool) {
+        if addVote {
+            self._postVote = _postVote + 1
+        } else {
+            self._postVote = _postVote - 1
+        }
+        
+        _postRef.childByAppendingPath("votes").setValue(_postVote)
         
     }
     

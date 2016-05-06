@@ -13,6 +13,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     var CatRef: Firebase!
+  
     @IBOutlet weak var tableView: UITableView!
     
     var posts = [Post]()
@@ -24,7 +25,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         tableView.delegate = self
         tableView.dataSource = self
-        DataService.dataservice.REF_POSTS.childByAppendingPath("creer").childByAppendingPath("creer").childByAppendingPath("creer").observeEventType(.Value, withBlock: { snapshot in
+//        DataService.dataservice.REF_POSTS.childByAppendingPath("creer").childByAppendingPath("creer").childByAppendingPath("creer").observeEventType(.Value, withBlock: { snapshot in
+        DataService.dataservice.REF_POSTS.observeEventType(.Value, withBlock: { snapshot in
 //            print(snapshot.value)
             
             self.posts = []
