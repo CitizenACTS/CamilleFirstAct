@@ -20,6 +20,9 @@ class CategorieVC: UIViewController {
     var currentcount = 0
     var CatRef: Firebase!
     var postQuestion: String!
+    var postCat1: String!
+    var postCat2: String!
+    var postCat3: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,12 +65,18 @@ class CategorieVC: UIViewController {
         ArrayCatQuestion[currentcount-1] = Quest[currentcount]![currentCategory]
 
         questionLbl.text = "\(ArrayCatQuestion[0])\(ArrayCatQuestion[1])\(ArrayCatQuestion[2])"
-        postQuestion = "\(ArrayCatFirebase[0])\(ArrayCatFirebase[1])\(ArrayCatFirebase[2])"
+        postQuestion = "\(ArrayCatQuestion[0])\(ArrayCatQuestion[1])\(ArrayCatQuestion[2])"
+        postCat1 = ArrayCatFirebase[0]
+        postCat2 = ArrayCatFirebase[1]
+        postCat3 = ArrayCatFirebase[2]
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let dest = segue.destinationViewController as! NewPostVC
         dest.CatRef = CatRef
         dest.postQuestion = postQuestion
+        dest.postCat1 = postCat1
+        dest.postCat2 = postCat2
+        dest.postCat3 = postCat3
       
     }
     
@@ -84,7 +93,7 @@ class CategorieVC: UIViewController {
     
     @IBAction func creerBtn(sender: UIButton) {
         saveQuestion()
-         SaveCategorie("creer")
+        SaveCategorie("creer")
         
 
 

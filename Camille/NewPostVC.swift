@@ -15,6 +15,10 @@ class NewPostVC: UIViewController {
     var voteRef: Firebase!
     var postQuestion: String!
     
+    var postCat1: String!
+    var postCat2: String!
+    var postCat3: String!
+    
     @IBOutlet weak var titreTrextFiled: UITextField!
     @IBOutlet weak var descTextView: UITextView!
     @IBOutlet weak var textTextView: UITextView!
@@ -31,7 +35,10 @@ class NewPostVC: UIViewController {
             "title" : titreTrextFiled.text!,
             "description" : descTextView.text!,
             "votes": 0,
-            "question": postQuestion
+            "question": postQuestion,
+            "cat1": postCat1,
+            "cat2": postCat2,
+            "cat3": postCat3
         
         
         ]

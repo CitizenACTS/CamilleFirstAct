@@ -21,6 +21,9 @@ class Post {
     private var _username: String!
     private var _postRef: Firebase!
     private var _postQuestion: String!
+    private var _postCat1: String!
+    private var _postCat2: String!
+    private var _postCat3: String!
     
     
     
@@ -51,6 +54,18 @@ class Post {
         return _postQuestion
     }
     
+    var postCat1: String {
+        return _postCat1
+    }
+    
+    var postCat2: String {
+        return _postCat2
+    }
+    
+    var postCat3: String {
+        return _postCat3
+    }
+    
     init(username: String, title: String, desc: String, text: String) {
         
         self._postTitle = title
@@ -76,6 +91,18 @@ class Post {
         }
         if let question = dictionary["question"] as? String {
             self._postQuestion = question
+        }
+        
+        if let cat1 = dictionary["cat1"] as? String {
+            self._postCat1 = cat1
+        }
+        
+        if let cat2 = dictionary["cat2"] as? String {
+            self._postCat2 = cat2
+        }
+        
+        if let cat3 = dictionary["cat3"] as? String {
+            self._postCat3 = cat3
         }
         
         self._postRef = DataService.dataservice.REF_POSTS.childByAppendingPath(self._postKey)
