@@ -8,5 +8,6 @@ target 'Camille' do
   pod 'ORStackView', '~> 3.0'
   pod 'SwiftyJSON', '~> 2.3'
   pod 'Firebase', '>= 2.5.1'
+  pod 'JSQMessagesViewController', '~> 7.2'
 end
 

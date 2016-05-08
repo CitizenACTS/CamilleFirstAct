@@ -19,6 +19,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>JSQMessagesViewController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>JSQSystemSoundPlayer.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>ORStackView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -42,12 +52,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>49977DC45EB07F32B264296309114B10</key>
+		<key>7CBD2EF0DEC7851A20528C372C64701C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>66F4186C8C5895BFEE2ABAEE299B588E</key>
+		<key>814A0BE9C35CDE3D116F90AB45A428CC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>95DB89A8BFC5FF0BF98458651D0163CD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -63,6 +78,11 @@
 			<true/>
 		</dict>
 		<key>C6CEE7BEADAD8E11590F1C4ACF7C4BCC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EDA125ADA52355B7CA6DF7BA96918357</key>
 		<dict>
 			<key>primary</key>
 			<true/>

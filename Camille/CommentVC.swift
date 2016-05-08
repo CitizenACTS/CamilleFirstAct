@@ -1,28 +1,37 @@
 //
 //  CommentVC.swift
-//  Camille
+//  
 //
-//  Created by Pierre De Pingon on 07/05/2016.
-//  Copyright © 2016 Pierre De Pingon. All rights reserved.
+//  Created by Pierre De Pingon on 08/05/2016.
+//
 //
 
 import UIKit
-import Firebase
+import JSQMessagesViewController
 
-class CommentVC: UIViewController {
-    
+class CommentVC: JSQMessagesViewController {
+
     var post: Post!
-    
-    @IBOutlet weak var titreLbl: UILabel!
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        titreLbl.text = post.postTitle
+        // Do any additional setup after loading the view.
     }
 
-    @IBAction func backBtn(sender: UIButton) {
-        dismissViewControllerAnimated(true, completion: nil)
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
+    
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
 
 }

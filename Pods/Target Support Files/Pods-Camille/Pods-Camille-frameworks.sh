@@ -87,6 +87,8 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Camille/AFNetworking.framework"
   install_framework "Pods-Camille/FLKAutoLayout.framework"
   install_framework "Pods-Camille/Firebase.framework"
+  install_framework "Pods-Camille/JSQMessagesViewController.framework"
+  install_framework "Pods-Camille/JSQSystemSoundPlayer.framework"
   install_framework "Pods-Camille/ORStackView.framework"
   install_framework "Pods-Camille/SwiftyJSON.framework"
 fi
@@ -94,6 +96,8 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Camille/AFNetworking.framework"
   install_framework "Pods-Camille/FLKAutoLayout.framework"
   install_framework "Pods-Camille/Firebase.framework"
+  install_framework "Pods-Camille/JSQMessagesViewController.framework"
+  install_framework "Pods-Camille/JSQSystemSoundPlayer.framework"
   install_framework "Pods-Camille/ORStackView.framework"
   install_framework "Pods-Camille/SwiftyJSON.framework"
 fi

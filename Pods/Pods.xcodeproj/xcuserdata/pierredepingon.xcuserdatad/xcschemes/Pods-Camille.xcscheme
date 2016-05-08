@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '13264EAABD84D16ABB8677B3'
+               BlueprintIdentifier = 'D551C8081E9C6586DCAB2FF8'
                BlueprintName = 'Pods-Camille'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'Pods_Camille.framework'>
