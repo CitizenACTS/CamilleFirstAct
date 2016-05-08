@@ -67,8 +67,8 @@ class CategorieVC: UIViewController {
         questionLbl.text = "\(ArrayCatQuestion[0])\(ArrayCatQuestion[1])\(ArrayCatQuestion[2])"
         postQuestion = "\(ArrayCatQuestion[0])\(ArrayCatQuestion[1])\(ArrayCatQuestion[2])"
         postCat1 = ArrayCatFirebase[0]
-        postCat2 = ArrayCatFirebase[1]
-        postCat3 = ArrayCatFirebase[2]
+        postCat2 = ArrayCatFirebase[0] + ArrayCatFirebase[1]
+        postCat3 = ArrayCatFirebase[0] + ArrayCatFirebase[1] + ArrayCatFirebase[2]
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let dest = segue.destinationViewController as! NewPostVC

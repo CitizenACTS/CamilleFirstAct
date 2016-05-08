@@ -18,6 +18,8 @@ let KEY_UID = "uid"
 // SEGUE
 let SEGUE_LOG = "logged In"
 let SEGUE_QUESTION = "AskQuestion"
+let SEGUE_COMMENT = "CommentVC"
+let SEGUE_POST = "SeePost"
 
 
 // ERROR

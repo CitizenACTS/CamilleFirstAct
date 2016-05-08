@@ -313,7 +313,7 @@
                                             <constraint firstAttribute="width" constant="40" id="RMV-be-2rM"/>
                                             <constraint firstAttribute="height" constant="40" id="mmE-8w-ErQ"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" title="creer"/>
                                         <connections>
                                             <action selector="creerCat:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bu6-N4-XZD"/>
                                         </connections>
@@ -324,7 +324,10 @@
                                             <constraint firstAttribute="width" constant="40" id="WUN-J0-HBc"/>
                                             <constraint firstAttribute="height" constant="40" id="dVq-SV-CgL"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" title="prod"/>
+                                        <connections>
+                                            <action selector="produireCat:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5ha-mT-OMa"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P2c-6s-9xk">
                                         <rect key="frame" x="155" y="0.0" width="58" height="40"/>
@@ -332,7 +335,10 @@
                                             <constraint firstAttribute="height" constant="40" id="0wn-Kt-6rg"/>
                                             <constraint firstAttribute="width" constant="40" id="kZE-bi-rMS"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" title="devel"/>
+                                        <connections>
+                                            <action selector="developperCat:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gi5-b7-BJo"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1jd-RR-aBF">
                                         <rect key="frame" x="233" y="0.0" width="57" height="40"/>
@@ -478,6 +484,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S3a-N4-sFq">
                                         <rect key="frame" x="23" y="20" width="34" height="30"/>
                                         <state key="normal" title="Back"/>
+                                        <connections>
+                                            <action selector="goBack:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xJs-ay-aue"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -751,7 +760,7 @@
                                                 </constraints>
                                                 <state key="normal" title="Participer"/>
                                                 <connections>
-                                                    <segue destination="yIY-Tb-Ega" kind="show" id="xef-VK-yrP"/>
+                                                    <action selector="commentBtn:" destination="iEP-gf-ygi" eventType="touchUpInside" id="fam-en-4be"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Otb-jw-afc">
@@ -783,20 +792,22 @@
                     <connections>
                         <outlet property="addBtn" destination="Otb-jw-afc" id="LSv-id-ieS"/>
                         <outlet property="descriptionLbl" destination="ffH-Mz-Dwd" id="dS2-29-bhC"/>
+                        <outlet property="questionLbl" destination="2ZU-a0-vS8" id="90L-IF-U1K"/>
                         <outlet property="subBtn" destination="D4u-yz-v5l" id="0zm-vE-qWE"/>
                         <outlet property="textLbl" destination="LLc-SJ-wpB" id="dun-PS-m1b"/>
                         <outlet property="titreLbl" destination="i55-0Z-jCB" id="Xtf-Ld-5fn"/>
                         <outlet property="votesLbl" destination="5uf-Ws-VwU" id="U3p-tm-3Uc"/>
+                        <segue destination="yIY-Tb-Ega" kind="show" identifier="CommentVC" id="w9x-Xj-evo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DYi-Rv-4lL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="537" y="187"/>
         </scene>
-        <!--View Controller-->
+        <!--CommentVC-->
         <scene sceneID="8mK-eH-qma">
             <objects>
-                <viewController id="yIY-Tb-Ega" sceneMemberID="viewController">
+                <viewController id="yIY-Tb-Ega" customClass="CommentVC" customModule="Camille" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dC0-N5-c9M"/>
                         <viewControllerLayoutGuide type="bottom" id="Fon-eR-uUP"/>
@@ -814,12 +825,12 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aGS-ME-uZE">
-                                        <rect key="frame" x="8" y="21" width="46" height="30"/>
-                                        <state key="normal" title="Button"/>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aGS-ME-uZE">
+                                        <rect key="frame" x="14" y="21" width="34" height="30"/>
+                                        <state key="normal" title="Back"/>
                                         <connections>
+                                            <action selector="backBtn:" destination="yIY-Tb-Ega" eventType="touchUpInside" id="W29-7n-Di6"/>
                                             <action selector="goBack:" destination="iEP-gf-ygi" eventType="touchUpInside" id="Jef-vL-dcX"/>
-                                            <segue destination="iEP-gf-ygi" kind="show" id="Vo0-qZ-yD0"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -941,6 +952,5 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="Byh-fP-61v"/>
-        <segue reference="Vo0-qZ-yD0"/>
     </inferredMetricsTieBreakers>
 </document>
