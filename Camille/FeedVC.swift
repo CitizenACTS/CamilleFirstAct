@@ -201,7 +201,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     @IBAction func developperCat(sender:UIButton) {
-        stateCount(2)
+        stateCount(3)
         switchCategory()
     }
     

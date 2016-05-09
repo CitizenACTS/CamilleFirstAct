@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		3FA5CEE8B2CEBCEC41D6EB16 /* Pods_Camille.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5AA1DC7C00D6167F11F0543 /* Pods_Camille.framework */; };
+		AC0161591CE0A5F7001DFE70 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0161581CE0A5F7001DFE70 /* MainVC.swift */; };
+		AC01615B1CE0EC79001DFE70 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC01615A1CE0EC79001DFE70 /* ContainerViewController.swift */; };
+		AC01615D1CE0EDBB001DFE70 /* Empty.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC01615C1CE0EDBB001DFE70 /* Empty.swift */; };
 		AC2FF9931CD9D95C00E3C3DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2FF9921CD9D95C00E3C3DF /* AppDelegate.swift */; };
 		AC2FF9981CD9D95C00E3C3DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC2FF9961CD9D95C00E3C3DF /* Main.storyboard */; };
 		AC2FF99A1CD9D95C00E3C3DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC2FF9991CD9D95C00E3C3DF /* Assets.xcassets */; };
@@ -32,6 +35,9 @@
 /* Begin PBXFileReference section */
 		6F66790AD7F197767B780049 /* Pods-Camille.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Camille.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Camille/Pods-Camille.debug.xcconfig"; sourceTree = "<group>"; };
 		A5AA1DC7C00D6167F11F0543 /* Pods_Camille.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Camille.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC0161581CE0A5F7001DFE70 /* MainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
+		AC01615A1CE0EC79001DFE70 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		AC01615C1CE0EDBB001DFE70 /* Empty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Empty.swift; sourceTree = "<group>"; };
 		AC2FF98F1CD9D95C00E3C3DF /* Camille.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Camille.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC2FF9921CD9D95C00E3C3DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC2FF9971CD9D95C00E3C3DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -122,9 +128,11 @@
 				ACA9464A1CDF995D0033EB07 /* CommentVC.swift */,
 				AC2FF9B41CDA0C8C00E3C3DF /* CategorieVC.swift */,
 				AC2FF9B61CDA0DBF00E3C3DF /* FeedVC.swift */,
+				AC0161581CE0A5F7001DFE70 /* MainVC.swift */,
 				AC2FF9B81CDA0DD100E3C3DF /* NewPostVC.swift */,
 				AC2FF9BA1CDA0DF500E3C3DF /* SeePost.swift */,
 				AC2FF9C41CDA1BD100E3C3DF /* LogInVC.swift */,
+				AC01615A1CE0EC79001DFE70 /* ContainerViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -143,6 +151,7 @@
 				AC2FF9B01CD9DFE100E3C3DF /* Post.swift */,
 				AC2FF9C01CDA0E4E00E3C3DF /* User.swift */,
 				AC2FF9C21CDA0E6400E3C3DF /* Category.swift */,
+				AC01615C1CE0EDBB001DFE70 /* Empty.swift */,
 			);
 			name = Module;
 			sourceTree = "<group>";
@@ -308,14 +317,17 @@
 				AC2FF9B71CDA0DBF00E3C3DF /* FeedVC.swift in Sources */,
 				AC2FF9931CD9D95C00E3C3DF /* AppDelegate.swift in Sources */,
 				AC2FF9B91CDA0DD100E3C3DF /* NewPostVC.swift in Sources */,
+				AC01615D1CE0EDBB001DFE70 /* Empty.swift in Sources */,
 				AC2FF9B51CDA0C8C00E3C3DF /* CategorieVC.swift in Sources */,
 				AC2FF9AC1CD9DF2D00E3C3DF /* Constants.swift in Sources */,
+				AC01615B1CE0EC79001DFE70 /* ContainerViewController.swift in Sources */,
 				AC2FF9C11CDA0E4E00E3C3DF /* User.swift in Sources */,
 				AC2FF9AF1CD9DF9800E3C3DF /* Dataservice.swift in Sources */,
 				AC2FF9B11CD9DFE100E3C3DF /* Post.swift in Sources */,
 				AC2FF9BD1CDA0E1E00E3C3DF /* PostCell.swift in Sources */,
 				AC2FF9C31CDA0E6400E3C3DF /* Category.swift in Sources */,
 				ACA9464B1CDF995D0033EB07 /* CommentVC.swift in Sources */,
+				AC0161591CE0A5F7001DFE70 /* MainVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

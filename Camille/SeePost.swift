@@ -37,7 +37,6 @@ class SeePost: UIViewController {
         voteRef = DataService.dataservice.REF_USER_CURRENT.childByAppendingPath("votes").childByAppendingPath(post.postKey)
         titreLbl.text = post.postTitle
         descriptionLbl.text = post.postDesc
-        textLbl.text = post.postText
         votesLbl.text = "\(post.postVote)"
         questionLbl.text = post.postQuestion
         
