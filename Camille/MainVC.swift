@@ -8,21 +8,26 @@
 
 import UIKit
 
+
+
+
 class MainVC: UIViewController {
     
+
+
+    @IBOutlet weak var containerTableVC: UIView!
+    @IBOutlet weak var containerSavePost: UIView!
     
     
-    @IBOutlet weak var contain: UIView!
     @IBOutlet weak var questionLbl: UILabel!
     
-    var containerView: ContainerViewController?
-    
-    var feedVC = FeedVC()
-    var seePost = SeePost()
+
+  
     
     var arrayCategoryQuest = ["", "", ""]
     var arrayCategoryPath = ["", "", ""]
-    var currentCount = 0
+
+  
     
     var postCategory1 = ""
     var postCategory2 = ""
@@ -33,25 +38,26 @@ class MainVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        questionLbl.text = "pose une question"
+        questionLbl.text = "Pose une question"
+        switchContainer(true)
         
-        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainVC.switchFromNotif), name: "switch", object: nil)
         
         
 
+    }
+
+    func switchFromNotif() {
+        switchContainer(true)
     }
     
     
     func currentCountUpdate(identifier: Int) {
         
-        currentCount += 1
-        if currentCount == 3 {
-            findQuestion(identifier)
-            let dictCategory = ["question": postQuestion, "cat1": postCategory1, "cat2": postCategory2, "cat3": postCategory3]
-            NSNotificationCenter.defaultCenter().postNotificationName("saveQuestionEnabled", object: self, userInfo: dictCategory)
-        }
-        if currentCount >= 4 {
-            currentCount = 0
+        currentCategoryConstant = currentCategoryConstant + 1
+
+        if currentCategoryConstant >= 4 {
+            currentCategoryConstant = 0
             arrayCategoryQuest = ["", "", ""]
             arrayCategoryPath = ["", "", ""]
             questionLbl.text = "pose une question"
@@ -59,7 +65,14 @@ class MainVC: UIViewController {
         } else {
             findQuestion(identifier)
             upGradeQuest()
+
         }
+        
+        
+        let postDict:[String: AnyObject] = ["currentCount": currentCategoryConstant, "question": postQuestion, "cat1" : postCategory1, "cat2": postCategory2, "cat3": postCategory3]
+        NSNotificationCenter.defaultCenter().postNotificationName("MainVC", object: nil, userInfo: postDict)
+        
+        
     }
     
     
@@ -72,8 +85,8 @@ class MainVC: UIViewController {
     
     func findQuestion(identifier: Int){
         
-        arrayCategoryPath[currentCount-1] = ArrayCategory[identifier]
-        arrayCategoryQuest[currentCount-1] = DictCategory[currentCount]![identifier]
+        arrayCategoryPath[currentCategoryConstant-1] = ArrayCategory[identifier]
+        arrayCategoryQuest[currentCategoryConstant-1] = DictCategory[currentCategoryConstant]![identifier]
         postCategory1 = arrayCategoryPath[0]
         postCategory2 = arrayCategoryPath[0] + arrayCategoryPath[1]
         postCategory3 = arrayCategoryPath[0] + arrayCategoryPath[1] + arrayCategoryPath[2]
@@ -83,12 +96,34 @@ class MainVC: UIViewController {
 
     }
     
+    // Segue
+
+
+
+
+    
     
     // Navigation ContainerView
     
+    func switchContainer(identifier: Bool) {
+        
+        if identifier {
+            UIView.animateWithDuration(0.5, animations: {
+                self.containerTableVC.alpha = 1
+                self.containerSavePost.alpha = 0
+                
+            })
+        } else {
+            UIView.animateWithDuration(0.5, animations: {
+                self.containerTableVC.alpha = 0
+                self.containerSavePost.alpha = 1
+            })
+            
+            
+        }
+    }
 
 
-    
     
 
     //Btn Navigation
@@ -96,33 +131,31 @@ class MainVC: UIViewController {
     @IBAction func profilBtn(sender: AnyObject) {
     }
     
-    @IBAction func createNewIdea(sender: AnyObject) {
-        containerView!.segueIdentifierReceivedFromParent("buttonTwo")
+    @IBAction func newPostVCBtn(sender: AnyObject) {
+        switchContainer(false)
 
-        
     }
     
     @IBAction func seeAllIdeas(sender: AnyObject) {
-        containerView!.segueIdentifierReceivedFromParent("buttonOne")
-       
-        
+        switchContainer(true)
+
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "container"{
-            
-            containerView = segue.destinationViewController as? ContainerViewController
-            
-            
-        }
+    @IBAction func seeFavoriteBtn(sender: AnyObject) {
+        switchContainer(true)
     }
+    
+    
+
+    
+
     
     
     //Btn Category
 
     @IBAction func creerBtn(sender: AnyObject) {
         currentCountUpdate(0)
-        
+
     }
     
     @IBAction func produireBtn(sender:AnyObject) {

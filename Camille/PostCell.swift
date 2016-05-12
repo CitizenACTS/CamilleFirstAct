@@ -28,5 +28,6 @@ class PostCell: UITableViewCell {
         self.post = post
         self.titleLbl.text = post.postTitle
         self.voteLbl.text = "\(post.postVote)"
+        self.descText.text = post.postDesc
     }
 }

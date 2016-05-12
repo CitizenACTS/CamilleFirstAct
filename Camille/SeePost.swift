@@ -55,10 +55,7 @@ class SeePost: UIViewController {
         
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let dest = segue.destinationViewController as! CommentVC
-        dest.post = selectedPost
-    }
+
     
     func activateBtn( enabled: Bool) {
         

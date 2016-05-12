@@ -53,7 +53,12 @@ class LogInVC: UIViewController {
                     } else {
                         print("login")
                         NSUserDefaults.standardUserDefaults().setValue(authData.uid, forKey: KEY_UID)
-                        let user = ["provider": authData.provider!]
+                        let user = [
+                            
+                            "provider" : authData.provider,
+                            "displayName" : authData.providerData["displayName"] as? NSString as? String,
+                            "email" : authData.providerData["email"] as? NSString as? String
+                        ]
                         DataService.dataservice.createFirebaseUser(authData.uid, user: user)
                         self.performSegueWithIdentifier(SEGUE_LOG, sender: nil)
                     }
@@ -62,6 +67,11 @@ class LogInVC: UIViewController {
         }
         
     }
+    
+
+
+    
+    
     @IBAction func attempteLogin(sender: UIButton!) {
         
         if let email = emailTextField.text where email != "", let pwd = passwordTextField.text where pwd != "" {
@@ -120,6 +130,8 @@ class LogInVC: UIViewController {
         presentViewController(alert, animated: true, completion: nil)
         
     }
+    
+    
     
     
     

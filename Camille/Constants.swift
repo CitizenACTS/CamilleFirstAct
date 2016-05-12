@@ -9,6 +9,9 @@
 import Foundation
 
 
+
+
+var currentCategoryConstant = 0
 // URL
 let URL_BASE = "https://camille.firebaseio.com"
 
