@@ -17,13 +17,9 @@ class NewPostVC: UIViewController {
     
 
     var voteRef: Firebase!
-    var postQuestion: String!
-    var postCategory: [String]!
-
-    
-    var postCat1: String!
-    var postCat2: String!
-    var postCat3: String!
+    var postCategory: String!
+    var postCity: String!
+    var postCityCategory: String!
 
 
 
@@ -42,8 +38,8 @@ class NewPostVC: UIViewController {
         
         
         
-        enabledSave(false)
-        // Do any additional setup after loading the view.
+//        enabledSave(false)
+
         
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(NewPostVC.readyToAsk(_:)), name: "MainVC", object: nil)
@@ -56,20 +52,15 @@ class NewPostVC: UIViewController {
         saveNewPost.enabled = sender
         descTextView.userInteractionEnabled = sender
         titreTrextFiled.userInteractionEnabled = sender
+        
     }
 
 
     func readyToAsk(notification: NSNotification) {
-        if notification.userInfo!["currentCount"] as! Int == 3 {
             enabledSave(true)
+            postCategory = notification.userInfo!["category"] as! String
+            postCity = notification.userInfo!["city"] as! String
 
-            postQuestion = notification.userInfo!["question"] as! String
-            postCat1 = notification.userInfo!["cat1"] as! String
-            postCat2 = notification.userInfo!["cat2"] as! String
-            postCat3 = notification.userInfo!["cat3"] as! String
-        } else {
-            enabledSave(false)
-        }
     }
 
 
@@ -77,37 +68,30 @@ class NewPostVC: UIViewController {
         
 
         NSNotificationCenter.defaultCenter().postNotificationName("switch", object: nil)
+  
         
         if titreTrextFiled.text != "" && descTextView.text != "" {
+            
+            postCityCategory = "\(postCity)\(postCategory)"
         
+
         var post: Dictionary<String, AnyObject> = [
             "title" : titreTrextFiled.text!,
             "description" : descTextView.text!,
             "votes": 0,
-            "question": postQuestion,
-            "cat1": postCat1,
-            "cat2": postCat2,
-            "cat3": postCat3
-        
-        
+            "category": postCategory,
+            "city": postCity,
+            "cityCategory" : postCityCategory,
+            "username" : userName,
+            "userUid" : userUid
         ]
-
-
-        
         DataService.dataservice.REF_POSTS.childByAutoId().setValue(post)
-        
             
-            
-            
-
-
         titreTrextFiled.text = ""
         descTextView.text = ""
-            
         } else {
-            print("error")
+            print("error Save")
         }
-        print(currentCategoryConstant)
     }
     
 

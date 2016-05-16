@@ -16,6 +16,8 @@ class PostCell: UITableViewCell {
     @IBOutlet weak var usernamLabel: UILabel!
     @IBOutlet weak var voteLbl: UILabel!
     
+
+    
     var post: Post!
     
     override func awakeFromNib() {
@@ -29,5 +31,8 @@ class PostCell: UITableViewCell {
         self.titleLbl.text = post.postTitle
         self.voteLbl.text = "\(post.postVote)"
         self.descText.text = post.postDesc
+        
+
     }
+
 }

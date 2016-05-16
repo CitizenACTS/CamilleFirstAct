@@ -25,6 +25,9 @@
 		AC2FF9C81CDA1EAC00E3C3DF /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC2FF9C71CDA1EAC00E3C3DF /* FBSDKLoginKit.framework */; };
 		AC2FF9CA1CDA1EC300E3C3DF /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC2FF9C91CDA1EC300E3C3DF /* FBSDKCoreKit.framework */; };
 		AC2FF9CC1CDA1EDE00E3C3DF /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC2FF9CB1CDA1EDE00E3C3DF /* Bolts.framework */; };
+		ACA7A5F11CE8DAB90005DF0A /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA7A5F01CE8DAB90005DF0A /* NotificationCell.swift */; };
+		ACA7A5F31CE8E95A0005DF0A /* NotificationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA7A5F21CE8E95A0005DF0A /* NotificationRequest.swift */; };
+		ACA7A5F51CE9BF900005DF0A /* NotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA7A5F41CE9BF900005DF0A /* NotificationVC.swift */; };
 		ACA9464B1CDF995D0033EB07 /* CommentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA9464A1CDF995D0033EB07 /* CommentVC.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +53,9 @@
 		AC2FF9C71CDA1EAC00E3C3DF /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		AC2FF9C91CDA1EC300E3C3DF /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		AC2FF9CB1CDA1EDE00E3C3DF /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		ACA7A5F01CE8DAB90005DF0A /* NotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		ACA7A5F21CE8E95A0005DF0A /* NotificationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationRequest.swift; sourceTree = "<group>"; };
+		ACA7A5F41CE9BF900005DF0A /* NotificationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationVC.swift; sourceTree = "<group>"; };
 		ACA9464A1CDF995D0033EB07 /* CommentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentVC.swift; sourceTree = "<group>"; };
 		D7964EDBDE932FCEF1BD49D7 /* Pods-Camille.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Camille.release.xcconfig"; path = "Pods/Target Support Files/Pods-Camille/Pods-Camille.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -123,6 +129,7 @@
 				AC2FF9B81CDA0DD100E3C3DF /* NewPostVC.swift */,
 				AC2FF9BA1CDA0DF500E3C3DF /* SeePost.swift */,
 				AC2FF9C41CDA1BD100E3C3DF /* LogInVC.swift */,
+				ACA7A5F41CE9BF900005DF0A /* NotificationVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -131,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				AC2FF9BC1CDA0E1E00E3C3DF /* PostCell.swift */,
+				ACA7A5F01CE8DAB90005DF0A /* NotificationCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -140,6 +148,7 @@
 			children = (
 				AC2FF9B01CD9DFE100E3C3DF /* Post.swift */,
 				AC2FF9C01CDA0E4E00E3C3DF /* User.swift */,
+				ACA7A5F21CE8E95A0005DF0A /* NotificationRequest.swift */,
 			);
 			name = Module;
 			sourceTree = "<group>";
@@ -301,12 +310,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC2FF9BB1CDA0DF500E3C3DF /* SeePost.swift in Sources */,
+				ACA7A5F51CE9BF900005DF0A /* NotificationVC.swift in Sources */,
 				AC2FF9C51CDA1BD100E3C3DF /* LogInVC.swift in Sources */,
 				AC2FF9B71CDA0DBF00E3C3DF /* FeedVC.swift in Sources */,
 				AC2FF9931CD9D95C00E3C3DF /* AppDelegate.swift in Sources */,
 				AC2FF9B91CDA0DD100E3C3DF /* NewPostVC.swift in Sources */,
 				AC2FF9AC1CD9DF2D00E3C3DF /* Constants.swift in Sources */,
+				ACA7A5F11CE8DAB90005DF0A /* NotificationCell.swift in Sources */,
 				AC2FF9C11CDA0E4E00E3C3DF /* User.swift in Sources */,
+				ACA7A5F31CE8E95A0005DF0A /* NotificationRequest.swift in Sources */,
 				AC2FF9AF1CD9DF9800E3C3DF /* Dataservice.swift in Sources */,
 				AC2FF9B11CD9DFE100E3C3DF /* Post.swift in Sources */,
 				AC2FF9BD1CDA0E1E00E3C3DF /* PostCell.swift in Sources */,
@@ -430,6 +442,7 @@
 					"$(PROJECT_DIR)/Camille",
 				);
 				INFOPLIST_FILE = Camille/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Citizen-ACTS-.Camille";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -447,6 +460,7 @@
 					"$(PROJECT_DIR)/Camille",
 				);
 				INFOPLIST_FILE = Camille/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Citizen-ACTS-.Camille";
 				PRODUCT_NAME = "$(TARGET_NAME)";

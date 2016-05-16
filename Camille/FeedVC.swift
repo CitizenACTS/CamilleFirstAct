@@ -16,13 +16,14 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
   
     @IBOutlet weak var tableView: UITableView!
     
+    
+    var askedPosts = 0
+    
     var posts = [Post]()
     var SelectedPost: Post!
     var PostPath = DataService.dataservice.REF_POSTS
-    var ArrayCurrentCategories = ["","",""]
     
     
-    var currentCategory = ""
     
 
     override func viewDidLoad() {
@@ -31,21 +32,32 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
         
         tableView.delegate = self
         tableView.dataSource = self
-     
-        switchCategory()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FeedVC.displayCategory(_:)), name: "MainVC", object: nil)
+
+        ReceiveEvent()
 
     }
 
 
+    func ReceiveEvent(){
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FeedVC.displayCategory(_:)), name: "MainVC", object: nil)
+    }
 
     func displayCategory(notification: NSNotification) {
-        ArrayCurrentCategories[0] = notification.userInfo!["cat1"] as! String
-        ArrayCurrentCategories[1] = notification.userInfo!["cat2"] as! String
-        ArrayCurrentCategories[2] = notification.userInfo!["cat3"] as! String
-        currentCategoryConstant = notification.userInfo!["currentCount"] as! Int
-        switchCategory()
+        
 
+        
+        askedPosts = notification.userInfo!["askedPost"] as! Int
+        postCategory = notification.userInfo!["category"] as! String
+        postCity = notification.userInfo!["city"] as! String
+        
+        postCityCategory = postCity + postCategory
+        print("\(askedPosts) event")
+
+        switchCategory(askedPosts)
+
+
+
+        
     }
 
 
@@ -81,13 +93,36 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
         }
     }
     
-    
-    func switchCategory() {
-        
-        // display all categories
-        if currentCategoryConstant == 0 {
-            PostPath.observeEventType(.Value, withBlock: { snapshot in
+    func seeMyPost() {
+        PostPath.queryOrderedByChild("username").queryEqualToValue(userName).observeEventType(.Value, withBlock: { snapshot in
+            
+            
+            self.posts = []
+            if let snapshot = snapshot.children.allObjects as? [FDataSnapshot] {
+                
 
+                
+                for snap in snapshot {
+                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        let key = snap.key
+                        let post = Post(postKey: key, dictionary: postDict)
+                        self.posts.append(post)
+                        
+                    }
+                }
+            }
+            
+            print(" non Category ")
+            
+            self.tableView.reloadData()
+        })
+    
+
+    }
+
+    func seelAllCategories(){
+            PostPath.observeEventType(.Value, withBlock: { snapshot in
+                
                 
                 self.posts = []
                 if let snapshot = snapshot.children.allObjects as? [FDataSnapshot] {
@@ -97,7 +132,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
                             let key = snap.key
                             let post = Post(postKey: key, dictionary: postDict)
                             self.posts.append(post)
-
+                            
                         }
                     }
                 }
@@ -106,78 +141,63 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
                 
                 self.tableView.reloadData()
             })
-        }
-        
-
-        if currentCategoryConstant == 1 {
-            PostPath.queryOrderedByChild("cat1").queryEqualToValue(ArrayCurrentCategories[0]).observeEventType(.Value, withBlock: { snapshot in
-                if let snapshot = snapshot.children.allObjects as? [FDataSnapshot] {
-                    
-                    self.posts = []
-                    for snap in snapshot {
-                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
-                            let key = snap.key
-                            let post = Post(postKey: key, dictionary: postDict)
-                            self.posts.append(post)
-
-                        }
-                    }
-                }
-                print("Category 1")
-                self.tableView.reloadData()
-            })
-        }
-        
-        
-        if currentCategoryConstant == 2 {
-            self.PostPath.queryOrderedByChild("cat2").queryEqualToValue(ArrayCurrentCategories[1]).observeEventType(.Value, withBlock: { snapshot in
-                if let snapshot = snapshot.children.allObjects as? [FDataSnapshot] {
-                    
-                    self.posts = []
-                    for snap in snapshot {
-                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
-                            let key = snap.key
-                            let post = Post(postKey: key, dictionary: postDict)
-                            self.posts.append(post)
-
-                        }
-                    }
-                }
+    }
+    
+    
+    func seeCityCategory() {
+        PostPath.queryOrderedByChild("cityCategory").queryEqualToValue(postCityCategory).observeEventType(.Value, withBlock: { snapshot in
+            if let snapshot = snapshot.children.allObjects as? [FDataSnapshot] {
                 
-                print("Category 2")
-                self.tableView.reloadData()
-            })
-        }
-        
-        if currentCategoryConstant == 3 {
-            self.PostPath.queryOrderedByChild("cat3").queryEqualToValue(ArrayCurrentCategories[2]).observeEventType(.Value, withBlock: { snapshot in
-                if let snapshot = snapshot.children.allObjects as? [FDataSnapshot] {
-                    
-                    self.posts = []
-                    for snap in snapshot {
-                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
-                            let key = snap.key
-                            let post = Post(postKey: key, dictionary: postDict)
-                            self.posts.append(post)
-
-                        }
+                self.posts = []
+                for snap in snapshot {
+                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        let key = snap.key
+                        let post = Post(postKey: key, dictionary: postDict)
+                        self.posts.append(post)
+                        
                     }
                 }
-                print("Category 3")
-                self.tableView.reloadData()
-            })
+            }
+            print("Category")
+            self.tableView.reloadData()
+        })
+    }
+    
+    
+    func switchCategory(sender: Int) {
+        
+        
+        // display by categories
+        
+        print(sender)
+        if sender == 0 {
+            print("test 0 ")
+            seelAllCategories()
         }
-     
+        
+
+        
+        // Display by Cities and Categories
+        if sender == 1 {
+            print("test 1 ")
+            seeCityCategory()
+        }
+        
+        
+        // Display my personnal post
+        if sender == 2 {
+            print("test 2")
+            seeMyPost()
+        }
+        
+
+
 
         
         
     }
     
-    @IBAction func goBack(sender: UIButton) {
-        
-        dismissViewControllerAnimated(true, completion: nil)
-        
-    }
+
     
 
     

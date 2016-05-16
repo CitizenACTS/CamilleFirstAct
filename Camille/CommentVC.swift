@@ -19,28 +19,25 @@ class CommentVC: JSQMessagesViewController {
     
     var messages = [JSQMessage]()
     
-    var refBase = DataService.dataservice.REF_BASE.childByAppendingPath("messages")
+    var refBase: Firebase!
     
     var keys = [String]()
     
-    var userName: String!
-    
+    var selectedPost: Post!
+
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        refBase = DataService.dataservice.REF_BASE.childByAppendingPath("messages").childByAppendingPath(selectedPost.postKey).childByAppendingPath("message")
+        print("\(selectedPost.postKey) post KEY")
         
-        DataService.dataservice.REF_USER_CURRENT.observeSingleEventOfType(.Value) { (snapshot:FDataSnapshot!) in
-            let user = snapshot.value as! NSDictionary
-            let userName = user["displayName"] as! String
-            print(user)
-            
-        }
         let uid = NSUserDefaults.standardUserDefaults().valueForKey(KEY_UID) as! String
 
         
         self.senderId = "\(uid)"
         self.senderDisplayName = "\(userName)"
+        print(userName)
         self.inputToolbar?.contentView.leftBarButtonItem.hidden = true
         self.inputToolbar?.contentView.leftBarButtonItemWidth = 0
         
@@ -94,7 +91,7 @@ class CommentVC: JSQMessagesViewController {
 
     func createAvatar(senderID: String, senderDisplayName: String, color: UIColor) {
         if avatars[senderId] == nil {
-            let initials = senderDisplayName.substringToIndex(senderDisplayName.startIndex.advancedBy(min(2, senderDisplayName.characters.count)))
+            let initials = senderDisplayName
             let avatar = JSQMessagesAvatarImageFactory.avatarImageWithUserInitials(initials, backgroundColor: color, textColor: UIColor.blackColor(), font: UIFont.systemFontOfSize(14), diameter: UInt(kJSQMessagesCollectionViewAvatarSizeDefault))
             avatars[senderId] = avatar
         }

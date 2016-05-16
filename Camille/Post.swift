@@ -19,12 +19,19 @@ class Post {
     private var _postVote: Int!
     private var _postKey: String!
     private var _username: String!
+    private var _userUid: String!
     private var _postRef: Firebase!
-    private var _postQuestion: String!
-    private var _postCat1: String!
-    private var _postCat2: String!
-    private var _postCat3: String!
+    private var _postCategory: String!
+    private var _postCity: String!
     
+    
+    var userUid: String {
+        return _userUid
+    }
+    
+    var postCity: String {
+        return _postCity
+    }
     
     
     var postTitle: String {
@@ -50,21 +57,20 @@ class Post {
         return _postKey
     }
     
-    var postQuestion: String {
-        return _postQuestion
+    
+    var category: String {
+        return _postCategory
     }
     
-    var postCat1: String {
-        return _postCat1
+    var city: String {
+        return _postCity
     }
     
-    var postCat2: String {
-        return _postCat2
+    var userName: String {
+        return _username
     }
     
-    var postCat3: String {
-        return _postCat3
-    }
+
     
     init(username: String, title: String, desc: String, text: String) {
         
@@ -77,6 +83,11 @@ class Post {
     
     init(postKey: String, dictionary: Dictionary<String, AnyObject>) {
         self._postKey = postKey
+        
+        if let userUid = dictionary["userUid"] as? String {
+            self._userUid = userUid
+        }
+
         if let votes = dictionary["votes"] as? Int {
             self._postVote = votes
         }
@@ -89,20 +100,18 @@ class Post {
         if let text = dictionary["text"] as? String {
             self._postText = text
         }
-        if let question = dictionary["question"] as? String {
-            self._postQuestion = question
+        
+        if let category = dictionary["category"] as? String {
+            self._postCategory = category
         }
         
-        if let cat1 = dictionary["cat1"] as? String {
-            self._postCat1 = cat1
+        if let userName = dictionary["username"] as? String {
+            self._username = userName
         }
         
-        if let cat2 = dictionary["cat2"] as? String {
-            self._postCat2 = cat2
-        }
         
-        if let cat3 = dictionary["cat3"] as? String {
-            self._postCat3 = cat3
+        if let postCity = dictionary["city"] as? String {
+            self._postCity = postCity
         }
         
         self._postRef = DataService.dataservice.REF_POSTS.childByAppendingPath(self._postKey)

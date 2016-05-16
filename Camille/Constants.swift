@@ -11,14 +11,21 @@ import Foundation
 
 
 
-var currentCategoryConstant = 0
 // URL
 let URL_BASE = "https://camille.firebaseio.com"
+
+
+// USER
+
+var userName: String!
+var userUid: String!
 
 // KEY
 let KEY_UID = "uid"
 
 // SEGUE
+
+let SEGUE_PARTICPANT = "SeeParticipant"
 let SEGUE_LOG = "logged In"
 let SEGUE_QUESTION = "AskQuestion"
 let SEGUE_COMMENT = "CommentVC"
@@ -31,6 +38,13 @@ let STATUS_ACCOUNT_WRONGEMAIL = -5
 let STATUS_ACCOUNT_WRONGPASSWORD = -6
 
 //Category
+
+var pickerDataSource = [["Paris","Lyon","Marseilles","Toulouse", "Bordeaux", "Rennes","Lyon","Marseilles","Toulouse", "Bordeaux", "Rennes","Lyon","Marseilles","Toulouse", "Bordeaux", "Rennes","Lyon","Marseilles2","Toulouse1", "Bordeaux", "Rennes","Lyon","Marseilles","Toulouse", "Bordeaux", "Rennes","Lyon","Marseilles","Toulouse", "Bordeaux", "Rennes","Lyon","Marseilles1","Toulouse2", "Bordeaux", "Rennes","Lyon","Marseilles","Toulouse", "Bordeaux", "Rennes","Lyon2","Marseilles","Toulouse", "Bordeaux3", "Rennes3","Lyon3","Marseilles3","Toulouse3", "Bordeaux4", "Rennes","Lyon","Marseilles","Toulouse", "Bordeaux", "Rennes","Lyon","Marseilles","Toulouse", "Bordeaux", "Rennes"],["1", "2", "3", "4","5"],["1", "2", "3", "4", "5"],["1", "2", "3", "4","5"]];
+
+var postCategory = "111"
+var postCity = "Paris"
+var postCityCategory = "Paris111"
+var askedPosts =  0
 
 
 

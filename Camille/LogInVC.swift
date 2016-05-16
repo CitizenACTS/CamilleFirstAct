@@ -59,6 +59,7 @@ class LogInVC: UIViewController {
                             "displayName" : authData.providerData["displayName"] as? NSString as? String,
                             "email" : authData.providerData["email"] as? NSString as? String
                         ]
+                        
                         DataService.dataservice.createFirebaseUser(authData.uid, user: user)
                         self.performSegueWithIdentifier(SEGUE_LOG, sender: nil)
                     }

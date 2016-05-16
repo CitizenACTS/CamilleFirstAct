@@ -7,119 +7,138 @@
 //
 
 import UIKit
+import Firebase
 
 
 
 
-class MainVC: UIViewController {
+class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
 
+    @IBOutlet weak var pickerView: UIPickerView!
 
     @IBOutlet weak var containerTableVC: UIView!
     @IBOutlet weak var containerSavePost: UIView!
+    @IBOutlet weak var containerNotifications: UIView!
     
-    
-    @IBOutlet weak var questionLbl: UILabel!
-    
+  
+
 
   
     
-    var arrayCategoryQuest = ["", "", ""]
-    var arrayCategoryPath = ["", "", ""]
 
-  
-    
-    var postCategory1 = ""
-    var postCategory2 = ""
-    var postCategory3 = ""
-    
-    var postQuestion = ""
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.pickerView.dataSource = self
+        self.pickerView.delegate = self
+        
+        
+    
+        
+        
+        // set the current user
+        userUid = NSUserDefaults.standardUserDefaults().valueForKey(KEY_UID) as! String
+        DataService.dataservice.REF_BASE.childByAppendingPath("users").childByAppendingPath(userUid).childByAppendingPath("coucouc").setValue("Niketamerde")
+        DataService.dataservice.REF_USER_CURRENT.observeSingleEventOfType(.Value) { (snapshot:FDataSnapshot!) in
+            let user = snapshot.value as! NSDictionary
+            userName = user["displayName"] as! String
+            
+        }
 
-        questionLbl.text = "Pose une question"
-        switchContainer(true)
+        switchContainer(0)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainVC.switchFromNotif), name: "switch", object: nil)
         
         
 
     }
+    
+    
+    func pickerView(pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat{
+        
+        if component == 0 {
+            return 130
+            
+        }
+        return 40
+    }
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 4
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if component == 0 {
+            return pickerDataSource[0].count
+        }
+        return 5
+    }
+    
+    
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerDataSource[component][row]
+        
+    }
+    
+
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let itemCity = pickerDataSource[0][pickerView.selectedRowInComponent(0)]
+        let itemCat1 = pickerDataSource[1][pickerView.selectedRowInComponent(1)]
+        let itemCat2 = pickerDataSource[2][pickerView.selectedRowInComponent(2)]
+        let itemCat3 = pickerDataSource[3][pickerView.selectedRowInComponent(3)]
+        
+        postCategory = "\(itemCat1)\(itemCat2)\(itemCat3)"
+        postCity = "\(itemCity)"
+        
+
+        SendEventCurrentCategory()
+        
+    }
+    
+    
+    func SendEventCurrentCategory(){
+        let postDict:[String: AnyObject] = ["city": postCity, "category": postCategory, "askedPost" : askedPosts]
+        print("\(askedPosts) MainVC")
+        NSNotificationCenter.defaultCenter().postNotificationName("MainVC", object: nil, userInfo: postDict)
+    }
 
     func switchFromNotif() {
-        switchContainer(true)
+        switchContainer(0)
     }
     
-    
-    func currentCountUpdate(identifier: Int) {
-        
-        currentCategoryConstant = currentCategoryConstant + 1
-
-        if currentCategoryConstant >= 4 {
-            currentCategoryConstant = 0
-            arrayCategoryQuest = ["", "", ""]
-            arrayCategoryPath = ["", "", ""]
-            questionLbl.text = "pose une question"
-
-        } else {
-            findQuestion(identifier)
-            upGradeQuest()
-
-        }
-        
-        
-        let postDict:[String: AnyObject] = ["currentCount": currentCategoryConstant, "question": postQuestion, "cat1" : postCategory1, "cat2": postCategory2, "cat3": postCategory3]
-        NSNotificationCenter.defaultCenter().postNotificationName("MainVC", object: nil, userInfo: postDict)
-        
-        
-    }
-    
-    
-    func upGradeQuest(){
-        questionLbl.text = "\(arrayCategoryQuest[0])\(arrayCategoryQuest[1])\(arrayCategoryQuest[2])"
-        postQuestion = "\(arrayCategoryQuest[0])\(arrayCategoryQuest[1])\(arrayCategoryQuest[2])"
-     
-    }
-    
-    
-    func findQuestion(identifier: Int){
-        
-        arrayCategoryPath[currentCategoryConstant-1] = ArrayCategory[identifier]
-        arrayCategoryQuest[currentCategoryConstant-1] = DictCategory[currentCategoryConstant]![identifier]
-        postCategory1 = arrayCategoryPath[0]
-        postCategory2 = arrayCategoryPath[0] + arrayCategoryPath[1]
-        postCategory3 = arrayCategoryPath[0] + arrayCategoryPath[1] + arrayCategoryPath[2]
-        
-        
-        
-
-    }
-    
-    // Segue
-
-
-
-
     
     
     // Navigation ContainerView
     
-    func switchContainer(identifier: Bool) {
+    func switchContainer(identifier: Int) {
         
-        if identifier {
+        if identifier == 0 {
             UIView.animateWithDuration(0.5, animations: {
                 self.containerTableVC.alpha = 1
                 self.containerSavePost.alpha = 0
+                self.containerNotifications.alpha = 0
                 
             })
-        } else {
+        }
+        
+        if identifier == 1 {
             UIView.animateWithDuration(0.5, animations: {
                 self.containerTableVC.alpha = 0
                 self.containerSavePost.alpha = 1
+                self.containerNotifications.alpha = 0
             })
             
             
+        }
+        
+        if identifier == 2 {
+            UIView.animateWithDuration(0.5, animations: {
+                self.containerTableVC.alpha = 0
+                self.containerSavePost.alpha = 0
+                self.containerNotifications.alpha = 1
+            })
         }
     }
 
@@ -128,21 +147,37 @@ class MainVC: UIViewController {
 
     //Btn Navigation
     
-    @IBAction func profilBtn(sender: AnyObject) {
+    @IBAction func goldenView(sender: AnyObject) {
+        
+        askedPosts = 0
+        SendEventCurrentCategory()
+        switchContainer(0)
+    }
+    
+    @IBAction func myIdeas(sender: AnyObject) {
+        askedPosts = 2
+        SendEventCurrentCategory()
+        switchContainer(2)
     }
     
     @IBAction func newPostVCBtn(sender: AnyObject) {
-        switchContainer(false)
+        SendEventCurrentCategory()
+        switchContainer(1)
 
     }
     
     @IBAction func seeAllIdeas(sender: AnyObject) {
-        switchContainer(true)
+
+        askedPosts = 1
+        SendEventCurrentCategory()
+        switchContainer(0)
 
     }
     
     @IBAction func seeFavoriteBtn(sender: AnyObject) {
-        switchContainer(true)
+        askedPosts = 3
+        SendEventCurrentCategory()
+        switchContainer(0)
     }
     
     
@@ -151,15 +186,5 @@ class MainVC: UIViewController {
 
     
     
-    //Btn Category
-
-    @IBAction func creerBtn(sender: AnyObject) {
-        currentCountUpdate(0)
-
-    }
-    
-    @IBAction func produireBtn(sender:AnyObject) {
-        
-    }
 
 }
