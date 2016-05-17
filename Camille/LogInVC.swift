@@ -12,8 +12,7 @@ import FBSDKCoreKit
 
 class LogInVC: UIViewController {
     
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,57 +71,7 @@ class LogInVC: UIViewController {
 
 
     
-    
-    @IBAction func attempteLogin(sender: UIButton!) {
-        
-        if let email = emailTextField.text where email != "", let pwd = passwordTextField.text where pwd != "" {
-            
-            DataService.dataservice.REF_BASE.authUser(email, password: pwd, withCompletionBlock: { error, authData in
-                if error != nil {
-                    
-                    if error.code == STATUS_ACCOUNT_WRONGPASSWORD {
-                        self.showErrorAlert("Wrong Password", msg: "Please enter your password")
-                    }
-                    if error.code == STATUS_ACCOUNT_NONEXIST {
-                        DataService.dataservice.REF_BASE.createUser(email, password: pwd, withValueCompletionBlock: { error, result in
-                            if error != nil {
-                                self.showErrorAlert("Could not create account", msg: "Problem creating account. Try something else")
-                                
-                            } else {
-                                NSUserDefaults.standardUserDefaults().setValue(result[KEY_UID], forKey: KEY_UID)
-                                DataService.dataservice.REF_BASE.authUser(email, password: pwd, withCompletionBlock: { err, authData in
-                                    
-                                    let user = ["provider": authData.provider!, "email": email]
-                                    DataService.dataservice.createFirebaseUser(authData.uid, user: user)
-                            })
-                
-                    
-                            self.performSegueWithIdentifier(SEGUE_LOG, sender: nil)
-                                
-                        }
-                        })
-                    } else {
-                        self.showErrorAlert("Could not log", msg: "Pls check password")
-                    }
-                    
-                    if error.code == STATUS_ACCOUNT_WRONGEMAIL {
-                        self.showErrorAlert("Invalid Email", msg: "Please enter a valid mail")
-                        
-                    }
-                    
-                } else {
-                    self.performSegueWithIdentifier(SEGUE_LOG, sender: nil)
-                }
-            })
-            
-        } else {
-            showErrorAlert("Email and Password", msg: "You must enter an email and a password")
-        }
-        
-        
-        
-    }
-    
+      
     
     func showErrorAlert(title: String, msg: String) {
         let alert = UIAlertController(title: title, message: msg, preferredStyle: .Alert)

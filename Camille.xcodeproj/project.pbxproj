@@ -25,9 +25,16 @@
 		AC2FF9C81CDA1EAC00E3C3DF /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC2FF9C71CDA1EAC00E3C3DF /* FBSDKLoginKit.framework */; };
 		AC2FF9CA1CDA1EC300E3C3DF /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC2FF9C91CDA1EC300E3C3DF /* FBSDKCoreKit.framework */; };
 		AC2FF9CC1CDA1EDE00E3C3DF /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC2FF9CB1CDA1EDE00E3C3DF /* Bolts.framework */; };
+		AC7D92FE1CEA308100AF7F05 /* colorPalette.plist in Resources */ = {isa = PBXBuildFile; fileRef = AC7D92FD1CEA308100AF7F05 /* colorPalette.plist */; };
+		AC7D93021CEA4DA100AF7F05 /* PostDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7D93011CEA4DA100AF7F05 /* PostDisplayViewController.swift */; };
 		ACA7A5F11CE8DAB90005DF0A /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA7A5F01CE8DAB90005DF0A /* NotificationCell.swift */; };
 		ACA7A5F31CE8E95A0005DF0A /* NotificationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA7A5F21CE8E95A0005DF0A /* NotificationRequest.swift */; };
 		ACA7A5F51CE9BF900005DF0A /* NotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA7A5F41CE9BF900005DF0A /* NotificationVC.swift */; };
+		ACA7A5FE1CEA1A8E0005DF0A /* ButtonMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA7A5FD1CEA1A8E0005DF0A /* ButtonMaterial.swift */; };
+		ACA7A6001CEA1B710005DF0A /* MaterialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA7A5FF1CEA1B710005DF0A /* MaterialView.swift */; };
+		ACA7A6021CEA1B8B0005DF0A /* TextFieldMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA7A6011CEA1B8B0005DF0A /* TextFieldMaterial.swift */; };
+		ACA7A6041CEA1E950005DF0A /* TextViewMat.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA7A6031CEA1E950005DF0A /* TextViewMat.swift */; };
+		ACA7A6061CEA1F810005DF0A /* PickerViewMat.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA7A6051CEA1F810005DF0A /* PickerViewMat.swift */; };
 		ACA9464B1CDF995D0033EB07 /* CommentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA9464A1CDF995D0033EB07 /* CommentVC.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,9 +60,16 @@
 		AC2FF9C71CDA1EAC00E3C3DF /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		AC2FF9C91CDA1EC300E3C3DF /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		AC2FF9CB1CDA1EDE00E3C3DF /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		AC7D92FD1CEA308100AF7F05 /* colorPalette.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = colorPalette.plist; sourceTree = "<group>"; };
+		AC7D93011CEA4DA100AF7F05 /* PostDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDisplayViewController.swift; sourceTree = "<group>"; };
 		ACA7A5F01CE8DAB90005DF0A /* NotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		ACA7A5F21CE8E95A0005DF0A /* NotificationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationRequest.swift; sourceTree = "<group>"; };
 		ACA7A5F41CE9BF900005DF0A /* NotificationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationVC.swift; sourceTree = "<group>"; };
+		ACA7A5FD1CEA1A8E0005DF0A /* ButtonMaterial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonMaterial.swift; sourceTree = "<group>"; };
+		ACA7A5FF1CEA1B710005DF0A /* MaterialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialView.swift; sourceTree = "<group>"; };
+		ACA7A6011CEA1B8B0005DF0A /* TextFieldMaterial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldMaterial.swift; sourceTree = "<group>"; };
+		ACA7A6031CEA1E950005DF0A /* TextViewMat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewMat.swift; sourceTree = "<group>"; };
+		ACA7A6051CEA1F810005DF0A /* PickerViewMat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerViewMat.swift; sourceTree = "<group>"; };
 		ACA9464A1CDF995D0033EB07 /* CommentVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentVC.swift; sourceTree = "<group>"; };
 		D7964EDBDE932FCEF1BD49D7 /* Pods-Camille.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Camille.release.xcconfig"; path = "Pods/Target Support Files/Pods-Camille/Pods-Camille.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -105,6 +119,8 @@
 		AC2FF9911CD9D95C00E3C3DF /* Camille */ = {
 			isa = PBXGroup;
 			children = (
+				AC7D92FD1CEA308100AF7F05 /* colorPalette.plist */,
+				ACA7A5FA1CEA1A620005DF0A /* Materials */,
 				AC2FF9AD1CD9DF7500E3C3DF /* Service */,
 				AC2FF9A71CD9DEF600E3C3DF /* Util */,
 				AC2FF9A61CD9DEF000E3C3DF /* Module */,
@@ -123,13 +139,14 @@
 		AC2FF9A41CD9DEDA00E3C3DF /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				ACA9464A1CDF995D0033EB07 /* CommentVC.swift */,
-				AC2FF9B61CDA0DBF00E3C3DF /* FeedVC.swift */,
 				AC0161581CE0A5F7001DFE70 /* MainVC.swift */,
+				AC2FF9B61CDA0DBF00E3C3DF /* FeedVC.swift */,
 				AC2FF9B81CDA0DD100E3C3DF /* NewPostVC.swift */,
-				AC2FF9BA1CDA0DF500E3C3DF /* SeePost.swift */,
-				AC2FF9C41CDA1BD100E3C3DF /* LogInVC.swift */,
 				ACA7A5F41CE9BF900005DF0A /* NotificationVC.swift */,
+				AC2FF9BA1CDA0DF500E3C3DF /* SeePost.swift */,
+				AC7D93011CEA4DA100AF7F05 /* PostDisplayViewController.swift */,
+				ACA9464A1CDF995D0033EB07 /* CommentVC.swift */,
+				AC2FF9C41CDA1BD100E3C3DF /* LogInVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -179,6 +196,18 @@
 			name = FrameWorks;
 			sourceTree = "<group>";
 		};
+		ACA7A5FA1CEA1A620005DF0A /* Materials */ = {
+			isa = PBXGroup;
+			children = (
+				ACA7A5FD1CEA1A8E0005DF0A /* ButtonMaterial.swift */,
+				ACA7A5FF1CEA1B710005DF0A /* MaterialView.swift */,
+				ACA7A6011CEA1B8B0005DF0A /* TextFieldMaterial.swift */,
+				ACA7A6031CEA1E950005DF0A /* TextViewMat.swift */,
+				ACA7A6051CEA1F810005DF0A /* PickerViewMat.swift */,
+			);
+			name = Materials;
+			sourceTree = "<group>";
+		};
 		F1F71E6E1DD82412D12BB9B0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,6 +251,7 @@
 				TargetAttributes = {
 					AC2FF98E1CD9D95C00E3C3DF = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = 2THE67AVZY;
 					};
 				};
 			};
@@ -250,6 +280,7 @@
 			files = (
 				AC2FF99D1CD9D95C00E3C3DF /* LaunchScreen.storyboard in Resources */,
 				AC2FF99A1CD9D95C00E3C3DF /* Assets.xcassets in Resources */,
+				AC7D92FE1CEA308100AF7F05 /* colorPalette.plist in Resources */,
 				AC2FF9981CD9D95C00E3C3DF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -310,19 +341,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC2FF9BB1CDA0DF500E3C3DF /* SeePost.swift in Sources */,
+				AC7D93021CEA4DA100AF7F05 /* PostDisplayViewController.swift in Sources */,
 				ACA7A5F51CE9BF900005DF0A /* NotificationVC.swift in Sources */,
 				AC2FF9C51CDA1BD100E3C3DF /* LogInVC.swift in Sources */,
 				AC2FF9B71CDA0DBF00E3C3DF /* FeedVC.swift in Sources */,
 				AC2FF9931CD9D95C00E3C3DF /* AppDelegate.swift in Sources */,
 				AC2FF9B91CDA0DD100E3C3DF /* NewPostVC.swift in Sources */,
+				ACA7A5FE1CEA1A8E0005DF0A /* ButtonMaterial.swift in Sources */,
+				ACA7A6021CEA1B8B0005DF0A /* TextFieldMaterial.swift in Sources */,
 				AC2FF9AC1CD9DF2D00E3C3DF /* Constants.swift in Sources */,
 				ACA7A5F11CE8DAB90005DF0A /* NotificationCell.swift in Sources */,
 				AC2FF9C11CDA0E4E00E3C3DF /* User.swift in Sources */,
 				ACA7A5F31CE8E95A0005DF0A /* NotificationRequest.swift in Sources */,
 				AC2FF9AF1CD9DF9800E3C3DF /* Dataservice.swift in Sources */,
+				ACA7A6001CEA1B710005DF0A /* MaterialView.swift in Sources */,
 				AC2FF9B11CD9DFE100E3C3DF /* Post.swift in Sources */,
+				ACA7A6061CEA1F810005DF0A /* PickerViewMat.swift in Sources */,
 				AC2FF9BD1CDA0E1E00E3C3DF /* PostCell.swift in Sources */,
 				ACA9464B1CDF995D0033EB07 /* CommentVC.swift in Sources */,
+				ACA7A6041CEA1E950005DF0A /* TextViewMat.swift in Sources */,
 				AC0161591CE0A5F7001DFE70 /* MainVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -437,6 +474,8 @@
 			baseConfigurationReference = 6F66790AD7F197767B780049 /* Pods-Camille.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Camille",
@@ -446,6 +485,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Citizen-ACTS-.Camille";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -455,6 +495,8 @@
 			baseConfigurationReference = D7964EDBDE932FCEF1BD49D7 /* Pods-Camille.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Camille",
@@ -464,6 +506,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Citizen-ACTS-.Camille";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

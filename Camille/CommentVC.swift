@@ -6,9 +6,12 @@
 //
 //
 
+import Foundation
+
 import UIKit
 import JSQMessagesViewController
 import Firebase
+
 
 class CommentVC: JSQMessagesViewController {
 
@@ -22,15 +25,18 @@ class CommentVC: JSQMessagesViewController {
     var refBase: Firebase!
     
     var keys = [String]()
-    
-    var selectedPost: Post!
 
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        refBase = DataService.dataservice.REF_BASE.childByAppendingPath("messages").childByAppendingPath(selectedPost.postKey).childByAppendingPath("message")
-        print("\(selectedPost.postKey) post KEY")
+
+                addTapGestures()
+        
+
+   
+        
+        refBase = DataService.dataservice.REF_BASE.childByAppendingPath("messages").childByAppendingPath(selectedPost.postKey)
+
         
         let uid = NSUserDefaults.standardUserDefaults().valueForKey(KEY_UID) as! String
 
@@ -42,8 +48,8 @@ class CommentVC: JSQMessagesViewController {
         self.inputToolbar?.contentView.leftBarButtonItemWidth = 0
         
         let bubbleFactory = JSQMessagesBubbleImageFactory()
-        incomingBubble = bubbleFactory.incomingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleLightGrayColor())
-        outgoingBubble = bubbleFactory.outgoingMessagesBubbleImageWithColor((UIColor.jsq_messageBubbleBlueColor()))
+        incomingBubble = bubbleFactory.incomingMessagesBubbleImageWithColor(UIColor.jsq_messageBubbleBlueColor())
+        outgoingBubble = bubbleFactory.outgoingMessagesBubbleImageWithColor((UIColor.jsq_messageBubbleLightGrayColor()))
         
         createAvatar(senderId, senderDisplayName: senderDisplayName, color: UIColor.jsq_messageBubbleLightGrayColor())
         
@@ -88,6 +94,13 @@ class CommentVC: JSQMessagesViewController {
     }
 
 
+    
+    
+    func defineSelectedPost(sender: NSNotification) {
+        print("oOOOOKKKKK")
+        selectedPost = sender.userInfo!["selectedPost"] as! Post
+    }
+    
 
     func createAvatar(senderID: String, senderDisplayName: String, color: UIColor) {
         if avatars[senderId] == nil {
@@ -165,14 +178,29 @@ class CommentVC: JSQMessagesViewController {
     }
     
     
+    func gestureRecognizer(_: UIGestureRecognizer,shouldRecognizeSimultaneouslyWithGestureRecognizer:UIGestureRecognizer) -> Bool {
+        return true
+    }
+    
+    func addTapGestures() {
+        let gesture = UITapGestureRecognizer(target: self, action: "tapAndHideKeyboard:")
+        self.collectionView.addGestureRecognizer(gesture)
+    }
+    
+    func tapAndHideKeyboard(gesture: UITapGestureRecognizer) {
+        (gesture)
+        if(gesture.state == UIGestureRecognizerState.Ended) {
+            if(self.inputToolbar.contentView.textView.isFirstResponder()) {
+                self.inputToolbar.contentView.textView.resignFirstResponder()
+            }
+        }
+    }
     
     
+ 
     
     
-    
-    
-    
-    
+
     
     
     

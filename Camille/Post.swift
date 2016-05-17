@@ -23,6 +23,12 @@ class Post {
     private var _postRef: Firebase!
     private var _postCategory: String!
     private var _postCity: String!
+    private var _postColor: UIColor!
+    
+    
+    var postColor: UIColor {
+        return _postColor
+    }
     
     
     var userUid: String {
@@ -114,6 +120,9 @@ class Post {
             self._postCity = postCity
         }
         
+        if let postColor = dictionary["postColor"] as? UIColor {
+            self._postColor = postColor
+        }
         self._postRef = DataService.dataservice.REF_POSTS.childByAppendingPath(self._postKey)
      
         

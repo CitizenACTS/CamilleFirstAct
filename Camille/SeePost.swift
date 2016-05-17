@@ -11,86 +11,73 @@ import Firebase
 
 class SeePost: UIViewController {
     
-    @IBOutlet weak var titreLbl: UILabel!
-    @IBOutlet weak var descriptionLbl: UITextView!
-    @IBOutlet weak var textLbl: UITextView!
-    @IBOutlet weak var votesLbl: UILabel!
     @IBOutlet weak var questionLbl: UILabel!
-    @IBOutlet weak var participantBtn: UIButton!
-    
+
+    @IBOutlet weak var containerDisplay: UIView!
+    @IBOutlet weak var containerComment: UIView!
+    @IBOutlet weak var postCategoryLbl: UILabel!
     @IBOutlet weak var participateBtn: UIButton!
     
-    @IBOutlet weak var addBtn: UIButton!
-    @IBOutlet weak var subBtn: UIButton!
     
     
-    var voteRef: Firebase!
+
     var commentRef: Firebase!
     var selectedPost: Post!
+    var currentCount = 1
+    var currentState = 0
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
-    
+        
+        postCategoryLbl.text = "\(selectedPost.city) : \(selectedPost.category)"
+
+        
         userUid = NSUserDefaults.standardUserDefaults().valueForKey(KEY_UID) as! String
-        ConfigurePost(selectedPost)
+        askRequest()
+        
+        if currentState == 0 {
+            self.participateBtn.titleLabel?.text == "Ask Invitation"
+        }
+        if currentState == 1 {
+            self.participateBtn.titleLabel?.text == "Asking ..."
+        }
+        if currentState == 2 {
+            self.participateBtn.titleLabel?.text == "Denied"
+            self.participateBtn.enabled = false
+        }
+        if currentState == 3 {
+            self.participateBtn.titleLabel?.text == "Participate"
+        }
+        if currentState == 4 {
+            self.participateBtn.titleLabel?.text == "My Post"
+        }
         
 
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        if segue.identifier == SEGUE_COMMENT {
-            let commentVC = segue.destinationViewController as! CommentVC
-            commentVC.selectedPost = self.selectedPost
-        }
-
-    }
-
-    func ConfigurePost(post: Post) {
-        voteRef = DataService.dataservice.REF_USER_CURRENT.childByAppendingPath("votes").childByAppendingPath(post.postKey)
-        commentRef = DataService.dataservice.REF_BASE.childByAppendingPath("requests").childByAppendingPath(selectedPost.postKey).childByAppendingPath(userUid)
-        
-        titreLbl.text = post.postTitle
-        descriptionLbl.text = post.postDesc
-        votesLbl.text = "\(post.postVote)"
-
-        
-        
-
-        voteRef.observeSingleEventOfType(.Value, withBlock: { snapshot in
-            
-            if let doesNotExist = snapshot.value as? NSNull {
-                
-                self.activateBtn(true)
-            } else {
-                self.activateBtn(false)
-            }
-        })
-        
-        askRequest()
+    
 
 
-    }
     
     func askRequest() {
         
         
         if selectedPost.userUid == userUid {
-            self.participateBtn.setTitle("My Post", forState: .Normal)
+            self.currentState = 4
         } else {
             
             
         DataService.dataservice.REF_BASE.childByAppendingPath("accepted").queryOrderedByChild("userUID").queryEqualToValue("\(self.selectedPost.postKey)\(userUid)").observeEventType(.Value, withBlock: { snapshot in
             
-                print(snapshot)
-                print("\(self.selectedPost.userUid)\(userUid)")
           
                 if var exist = snapshot.value as? NSNull {
                     self.dontExiste()
                 } else {
-                    self.participateBtn.setTitle("Participate", forState: .Normal)
+                    self.currentState = 3
+                    self.stateBtn(self.currentState)
                 }
                 
             })
@@ -107,7 +94,8 @@ class SeePost: UIViewController {
 
             print("\(self.selectedPost.postKey)\(userUid)")
             if var exist = snapshot.value as? NSNull {
-               self.participateBtn.setTitle("Ask Invitation", forState: .Normal)
+               self.currentState = 0
+                self.stateBtn(self.currentState)
             } else {
                 self.doesExist()
                 
@@ -118,82 +106,117 @@ class SeePost: UIViewController {
     func doesExist() {
         DataService.dataservice.REF_BASE.childByAppendingPath("requests").queryOrderedByChild("stateRequest").queryEqualToValue("ok?").observeEventType(.Value, withBlock: { snapshot in
             if var exist = snapshot.value as? NSNull {
-               self.participateBtn.setTitle("Denied", forState: .Normal)
+               self.currentState = 2
+                self.stateBtn(self.currentState)
             } else {
-               self.participateBtn.setTitle("Asking ...", forState: .Normal)
+               self.currentState = 1
+                self.stateBtn(self.currentState)
             }
             
         })
     }
     
-    func activateBtn( enabled: Bool) {
-        
-        self.addBtn.enabled = enabled
-        self.subBtn.enabled = enabled
-    }
-    
-    func participateActivateBtn(enabled: Bool) {
-        self.participateBtn.enabled = enabled
-    }
-    
-    @IBAction func addVote(sender: UIButton) {
-        self.selectedPost!.adjustVote(true)
-        self.voteRef.setValue(true)
-        activateBtn(false)
-        
-        self.votesLbl.text = "\(selectedPost.postVote)"
-    }
-    
-    @IBAction func subVote(sender: UIButton) {
-        self.selectedPost.adjustVote(false)
-        self.voteRef.setValue(true)
-        activateBtn(false)
+    func switchContainer(sender: Bool) {
+        if sender {
+            UIView.animateWithDuration(0.5, animations: {
+                self.containerComment.alpha = 1.0
+                self.containerDisplay.alpha = 0.0
+            })
 
-        self.votesLbl.text = "\(selectedPost.postVote)"
-        
+        } else {
+            UIView.animateWithDuration(0.5, animations: {
+                self.containerComment.alpha = 0.0
+                self.containerDisplay.alpha = 1.0
+            })
+        }
     }
+
+
+
     
     @IBAction func goBack(sender: UIButton) {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    
-    @IBAction func seeParticipant(sender:UIButton) {
-        self.performSegueWithIdentifier(SEGUE_PARTICPANT, sender: nil)
-    }
-
-    @IBAction func commentBtn(sender: UIButton) {
+    func stateBtn(sender : Int) {
         
         let ownerUID = selectedPost.userUid
         let postTitle = selectedPost.postTitle
         let postKey = selectedPost.postKey
         
-        if participateBtn.titleLabel?.text == "Ask Invitation" {
+        // Invitation
+        if sender == 0 {
             var RequestDictionary : Dictionary<String, AnyObject> = [
-                "userName" : userName,
-                "selectedPost" : postKey,
-                "stateRequest" : "ok?",
-                "userUID" : "\(postKey)\(userUid)",
-                "ownerUID" : ownerUID,
-                "postTitre": postTitle
-            ]
+                    "userName" : userName,
+                    "selectedPost" : postKey,
+                    "stateRequest" : "ok?",
+                    "userUID" : "\(postKey)\(userUid)",
+                    "ownerUID" : ownerUID,
+                    "postTitre": postTitle
+                ]
+                
+                DataService.dataservice.REF_BASE.childByAppendingPath("requests").childByAutoId().setValue(RequestDictionary)
+        }
+        
+        // Asking
+        if sender == 1 {
+            participateBtn.titleLabel?.text = "Asking..."
             
-            DataService.dataservice.REF_BASE.childByAppendingPath("requests").childByAutoId().setValue(RequestDictionary)
-            self.participateBtn.setTitle("Asking...", forState: .Normal)
+        }
+        // Denied
+        if sender == 2 {
+            participateBtn.titleLabel?.text = "Denied"
  
+
+            
+        }
+        // Participate
+        if sender == 3 {
+            participateBtn.titleLabel?.text = "Participate"
+
+            
+        }
+        // Owner
+        if sender == 4 {
+            participateBtn.titleLabel?.text = "MyPost"
+
+            
         }
         
-        if participateBtn.titleLabel?.text == "My Post" {
-            performSegueWithIdentifier(SEGUE_COMMENT, sender: nil)
-            print("good lord")
+    }
+    
+
+        func refreshCount(){
+            currentCount += 1
+            if currentCount > 1 {
+                currentCount = 0
+            }
         }
-        if participateBtn.titleLabel?.text == "Participate" {
-            performSegueWithIdentifier(SEGUE_COMMENT, sender: nil)
-        }
-        if participateBtn.titleLabel?.text == "Denied" {
-            print("denied")
+    func actualState(sender: Int) {
+        currentState = sender
+        
+    }
+    
+    @IBAction func commentBtn(sender: UIButton) {
+        if currentState >= 3 {
+        refreshCount()
+        if currentCount == 1 {
+            stateBtn(currentState)
+            switchContainer(true)
+
         }
         
+        else {
+            self.participateBtn.setTitle("See Post", forState: .Normal)
+            switchContainer(false)
+        }
+        } else {
+            stateBtn(currentState)
+        }
+        print(currentState)
+
+        
+
     }
     
 

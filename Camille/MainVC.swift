@@ -44,6 +44,7 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
         DataService.dataservice.REF_USER_CURRENT.observeSingleEventOfType(.Value) { (snapshot:FDataSnapshot!) in
             let user = snapshot.value as! NSDictionary
             userName = user["displayName"] as! String
+ 
             
         }
 
@@ -149,7 +150,7 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBAction func goldenView(sender: AnyObject) {
         
-        askedPosts = 0
+        askedPosts = 1
         SendEventCurrentCategory()
         switchContainer(0)
     }
@@ -157,7 +158,7 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     @IBAction func myIdeas(sender: AnyObject) {
         askedPosts = 2
         SendEventCurrentCategory()
-        switchContainer(2)
+        switchContainer(0)
     }
     
     @IBAction func newPostVCBtn(sender: AnyObject) {
@@ -168,9 +169,9 @@ class MainVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBAction func seeAllIdeas(sender: AnyObject) {
 
-        askedPosts = 1
+        askedPosts = 0
         SendEventCurrentCategory()
-        switchContainer(0)
+        switchContainer(2)
 
     }
     

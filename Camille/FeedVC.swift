@@ -70,10 +70,15 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
         let dest = segue.destinationViewController as! SeePost
         dest.selectedPost = SelectedPost
 
+
+
         }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         SelectedPost = posts[indexPath.row]
+        selectedPost = SelectedPost
         performSegueWithIdentifier(SEGUE_POST, sender: nil)
+
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         
     }
@@ -112,7 +117,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
                 }
             }
             
-            print(" non Category ")
+            print(" seeMyPost ")
             
             self.tableView.reloadData()
         })
@@ -137,7 +142,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
                     }
                 }
                 
-                print(" non Category ")
+                print(" seeAllCat ")
                 
                 self.tableView.reloadData()
             })
@@ -158,7 +163,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
                     }
                 }
             }
-            print("Category")
+            print(" seeByCity")
             self.tableView.reloadData()
         })
     }
@@ -169,9 +174,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
         
         // display by categories
         
-        print(sender)
+
         if sender == 0 {
-            print("test 0 ")
             seelAllCategories()
         }
         
@@ -179,14 +183,12 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource{
         
         // Display by Cities and Categories
         if sender == 1 {
-            print("test 1 ")
             seeCityCategory()
         }
         
         
         // Display my personnal post
         if sender == 2 {
-            print("test 2")
             seeMyPost()
         }
         

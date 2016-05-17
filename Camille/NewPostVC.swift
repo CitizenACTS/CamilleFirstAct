@@ -12,14 +12,14 @@ import Firebase
 
 
 
-
-class NewPostVC: UIViewController {
+class NewPostVC: UIViewController, UIPopoverPresentationControllerDelegate {
     
 
     var voteRef: Firebase!
     var postCategory: String!
     var postCity: String!
     var postCityCategory: String!
+    var postColor: UIColor!
 
 
 
@@ -35,7 +35,7 @@ class NewPostVC: UIViewController {
         super.viewDidLoad()
         
 
-        
+        self.addDoneButtonOnKeyboard()
         
         
 //        enabledSave(false)
@@ -62,6 +62,39 @@ class NewPostVC: UIViewController {
             postCity = notification.userInfo!["city"] as! String
 
     }
+    
+    
+    
+    
+    // DissmissKeyBoard
+    
+    
+    func addDoneButtonOnKeyboard()
+    {
+        var doneToolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, 320, 50))
+        doneToolbar.barStyle = UIBarStyle.BlackTranslucent
+        
+        var flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+        var done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: Selector("doneButtonAction"))
+        
+        var items = NSMutableArray()
+        items.addObject(flexSpace)
+        items.addObject(done)
+        
+        
+        doneToolbar.items = [done]
+        doneToolbar.sizeToFit()
+        
+        self.titreTrextFiled.inputAccessoryView = doneToolbar
+        self.descTextView.inputAccessoryView = doneToolbar
+        
+    }
+    
+    func doneButtonAction()
+    {
+        self.titreTrextFiled.resignFirstResponder()
+        self.descTextView.resignFirstResponder()
+    }
 
 
     @IBAction func saveNewPost(sender: AnyObject) {
@@ -73,6 +106,7 @@ class NewPostVC: UIViewController {
         if titreTrextFiled.text != "" && descTextView.text != "" {
             
             postCityCategory = "\(postCity)\(postCategory)"
+            
         
 
         var post: Dictionary<String, AnyObject> = [
@@ -83,7 +117,8 @@ class NewPostVC: UIViewController {
             "city": postCity,
             "cityCategory" : postCityCategory,
             "username" : userName,
-            "userUid" : userUid
+            "userUid" : userUid,
+
         ]
         DataService.dataservice.REF_POSTS.childByAutoId().setValue(post)
             
@@ -95,4 +130,5 @@ class NewPostVC: UIViewController {
     }
     
 
+    
 }

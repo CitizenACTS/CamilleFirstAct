@@ -7,8 +7,13 @@
 //
 
 import Foundation
+import UIKit
+
+var selectedPost: Post!
 
 
+// colors
+let SHADOW_COLOR: CGFloat = 157.0/255
 
 
 // URL
@@ -28,6 +33,7 @@ let KEY_UID = "uid"
 let SEGUE_PARTICPANT = "SeeParticipant"
 let SEGUE_LOG = "logged In"
 let SEGUE_QUESTION = "AskQuestion"
+let SEGUE_DISPLYPOST = "PostDisplayViewController"
 let SEGUE_COMMENT = "CommentVC"
 let SEGUE_POST = "SeePost"
 
